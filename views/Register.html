@@ -5,24 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <meta name="ByteBuddy Learning" content="ByteBuddy Learning" />
-    <link rel="stylesheet" href="../styles/Login.css" />
-    <title>ByteBuddy Learning</title>
+    <link rel="stylesheet" href="../styles/Register.css" />
+    <title>Registro ByteBuddy Learning</title>
   </head>
   <body>
-    <video autoplay muted loop class="Background_Login">
+    <video autoplay muted loop class="Background_Login_Register">
       <source src="../assets/videos/Background_Login.mp4" type="video/mp4" />
       Tu navegador no soporta HTML5.
     </video>
-    <section class="Login_Form">
+    <section class="Login_Form_Register">
       <div class="Form_Box">
         <div class="Form_Value">
-          <form action="" method="POST" id="Form_Login">
-            <h2 id="Title_Login">Inicia sesión</h2>
+          <form action="" method="POST" id="Form_Register">
+            <h2 id="Title_Register_Login">Registrarse</h2>
             <div class="Input_Box">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="20px"
-                height="20px"
+                width="16"
+                height="16"
+                fill="currentColor"
+                class="bi bi-person-vcard"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M5 8a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm4-2.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5ZM9 8a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4A.5.5 0 0 1 9 8Zm1 2.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5Z"
+                />
+                <path
+                  d="M2 2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H2ZM1 4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H8.96c.026-.163.04-.33.04-.5C9 10.567 7.21 9 5 9c-2.086 0-3.8 1.398-3.984 3.181A1.006 1.006 0 0 1 1 12V4Z"
+                />
+              </svg>
+              <input
+                type="text"
+                name="name"
+                title="Ingrese su nombre"
+                id="Name"
+              />
+              <label for="name">Nombre</label>
+            </div>
+            <div class="Input_Box">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16px"
+                height="16px"
                 fill="currentColor"
                 class="Icon_Email"
                 viewBox="0 0 16 16"
@@ -46,8 +70,8 @@
             <div class="Input_Box">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="20px"
-                height="20px"
+                width="16px"
+                height="16px"
                 fill="currentColor"
                 class="Icon_Password"
                 viewBox="0 0 16 16"
@@ -65,20 +89,22 @@
               />
               <label for="password">Contraseña</label>
             </div>
-            <br />
             <input
               type="submit"
-              name="Btn_Inicia_Sesion"
-              title="Iniciar sesión"
-              id="Btn_Log_In"
-              value="Inicia sesión"
+              name="Btn_Register"
+              title="Registrarse"
+              id="Btn_Log_in_Register"
+              value="Registrarse"
             />
-            <div class="Register">
-              <p>
-                ¿No tienes una cuenta?
-                <a href="Login_Register.html"> Regístrate</a>
-              </p>
-            </div>
+            <br /><br />
+            <button
+              type="submit"
+              name="Btn_Go_Back"
+              title="Regresar"
+              id="Btn_Go_Back_Login"
+            >
+              <a href="Login.html">Regresar</a>
+            </button>
           </form>
         </div>
       </div>
