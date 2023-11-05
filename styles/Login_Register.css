@@ -1,0 +1,181 @@
+:root {
+  --Opc_Color_1: #140e11;
+  --Opc_Color_2: #0e395d;
+  --Opc_Color_3: #0879b9;
+  --Opc_Color_4: #000070;
+  --Opc_Color_5: #000091;
+  --Opc_Color_6: #ffff;
+}
+.Background_Login_Register {
+  position: fixed;
+  width: auto;
+  height: auto;
+  z-index: 0;
+}
+* {
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+.Login_Form_Register {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  width: 100%;
+  z-index: 1;
+}
+.Form_Box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 450px;
+  height: 500px;
+  background-color: transparent;
+  border: 2px solid rgba(255, 255, 255, 1);
+  border-radius: 30px;
+  backdrop-filter: blur(4px);
+  z-index: 1;
+}
+#Title_Register_Login {
+  font-size: 2em;
+  color: var(--Opc_Color_6);
+  text-align: center;
+  transition: color 2s ease-in-out;
+  z-index: 1;
+}
+#Title_Register_Login:hover {
+  color: var(--Opc_Color_4);
+}
+.Input_Box {
+  position: relative;
+  margin: 30px 0;
+  width: 300px;
+  border-bottom: 2px solid var(--Opc_Color_6);
+  z-index: 1;
+}
+.Input_Box label {
+  position: absolute;
+  top: 50%;
+  left: 5px;
+  transform: translateY(-50%);
+  color: var(--Opc_Color_6);
+  font-size: 1em;
+  pointer-events: none;
+  transition: 0.5s;
+  z-index: 1;
+}
+input:focus ~ label,
+input:valid ~ label {
+  top: -5px;
+}
+.Input_Box input {
+  width: 100%;
+  height: 50px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  font-size: 1em;
+  padding: 0 35px 0 5px;
+  color: var(--Opc_Color_6);
+}
+input[type="date"] {
+  padding: 5px;
+  right: 8px;
+  font-size: 16px;
+}
+input[type="date"]::-webkit-calendar-picker-indicator {
+  color: var(--Opc_Color_6);
+  background-color: var(--Opc_Color_6);
+  border: 2px solid var(--Opc_Color_6);
+  border-radius: 5px;
+  background-color: transparent;
+}
+.Input_Box svg {
+  position: absolute;
+  right: 8px;
+  color: var(--Opc_Color_6);
+  font-size: 1.2em;
+  top: 20px;
+}
+#Btn_Log_in_Register {
+  width: 100%;
+  height: 40px;
+  border-radius: 30px;
+  outline: none;
+  border: none;
+  display: inline-block;
+  font-size: 18px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  color: var(--Opc_Color_1);
+  background-color: var(--Opc_Color_6);
+  text-decoration: none;
+  -webkit-transition: ease-out 0.4s;
+  -moz-transition: ease-out 0.4s;
+  transition: ease-out 0.4s;
+}
+#Btn_Log_in_Register:hover {
+  box-shadow: inset 400px 50px 0 0 var(--Opc_Color_1);
+  color: var(--Opc_Color_6);
+}
+#Btn_Go_Back_Login a {
+  text-decoration: none;
+  color: var(--Opc_Color_1);
+}
+#Btn_Go_Back_Login a {
+  width: 100%;
+  height: 40px;
+  border-radius: 30px;
+  outline: none;
+  border: none;
+  display: inline-block;
+  font-size: 18px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  color: var(--Opc_Color_1);
+  background-color: var(--Opc_Color_6);
+  text-decoration: none;
+  -webkit-transition: ease-out 0.4s;
+  -moz-transition: ease-out 0.4s;
+  transition: ease-out 0.4s;
+}
+#Btn_Go_Back_Login a:hover {
+  box-shadow: inset 400px 50px 0 0 var(--Opc_Color_1);
+  color: var(--Opc_Color_6);
+}
+#Btn_Go_Back_Login {
+  width: 100%;
+  height: 40px;
+  border-radius: 30px;
+  outline: none;
+  border: none;
+  display: inline-block;
+  font-size: 18px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  color: var(--Opc_Color_1);
+  background-color: var(--Opc_Color_6);
+  text-decoration: none;
+  -webkit-transition: ease-out 0.4s;
+  -moz-transition: ease-out 0.4s;
+  transition: ease-out 0.4s;
+}
+#Btn_Go_Back_Login:hover {
+  box-shadow: inset 400px 50px 0 0 var(--Opc_Color_1);
+  color: var(--Opc_Color_6);
+}
+@media (max-width: 768px) {
+  .Form_Box {
+    width: 8.5cm;
+    padding: 10px;
+  }
+  #Title_Login {
+    font-size: 1.5em;
+  }
+  .Input_Box {
+    width: 100%;
+  }
+}
