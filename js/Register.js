@@ -34,10 +34,8 @@ function validateData(e) {
       processData: false,
       contentType: false,
       success: function (data) {
-        
-        // Si la respuesta es correcta
-        console.log(data)
-        if (data.respuesta === "correcto") {
+        const jsonData = JSON.parse(data);
+        if (jsonData.respuesta === "correcto") {
           // El usuario se registró correctamente
           Swal.fire({
             title: "Usuario creado",
@@ -45,19 +43,20 @@ function validateData(e) {
             icon: "success",
           }).then((result) => {
             if (result.value) {
-              window.location.href = "index.html";
+              window.location.href = "../views/login.html";
             }
           });
         }
         // Si el usuario ya existe
-        else if (data.respuesta === "registrado") {
+        else if (jsonData.respuesta === "registrado") {
           Swal.fire({
             title: "Este usuario ya existe",
-            text: "El usuario ya existe, intente con otro",
+            text: "El usuario ya existe, inicie sesión con su usuario y contraseña",
             icon: "error",
           }).then((result) => {
             if (result.value) {
               cleanFrom();
+              window.location.href = "../views/login.html";
             }
           });
         }
