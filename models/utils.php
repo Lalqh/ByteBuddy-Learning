@@ -8,6 +8,11 @@ class Crud
         $this->dbConnection = $conn;
     }
 
+    public function getDbConnection()
+    {
+        return $this->dbConnection;
+    }
+
     public function insert(string $table, array $array)
     {
         $keys = array_keys($array);
