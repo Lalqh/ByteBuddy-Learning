@@ -1,7 +1,7 @@
 <?php
 
 require_once 'conector.php';
-require_once 'Utils.php';
+require_once 'utils.php';
 
 $db = Db::getInstance();
 $conexion = $db->getConnection();
@@ -36,7 +36,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     echo json_encode($response);
 }
 
-function getExistUser($email, $crud) {
+function getExistUser($email, $crud)
+{
     $email = $crud->getDbConnection()->real_escape_string($email); // Escapar el valor para prevenir SQL injection
     try {
         $result = $crud->select('COUNT(*) as count', 'usuarios', "correo = '$email'");
@@ -53,7 +54,8 @@ function getExistUser($email, $crud) {
     }
 }
 
-function registerUser($name, $email, $password, $crud) {
+function registerUser($name, $email, $password, $crud)
+{
     $dataUser = [
         'id' => generateUuidv4(),
         'correo' => $email,
@@ -67,12 +69,16 @@ function registerUser($name, $email, $password, $crud) {
 
 function generateUuidv4()
 {
-    return sprintf('%04x%04x-%04x-%04x-%04x-%04x%04x%04x',
-    mt_rand(0, 0xffff), mt_rand(0, 0xffff),
-    mt_rand(0, 0xffff),
-    mt_rand(0, 0x0fff) | 0x4000,
-    mt_rand(0, 0x3fff) | 0x8000,
-    mt_rand(0, 0xffff), mt_rand(0, 0xffff), mt_rand(0, 0xffff)
+    return sprintf(
+        '%04x%04x-%04x-%04x-%04x-%04x%04x%04x',
+        mt_rand(0, 0xffff),
+        mt_rand(0, 0xffff),
+        mt_rand(0, 0xffff),
+        mt_rand(0, 0x0fff) | 0x4000,
+        mt_rand(0, 0x3fff) | 0x8000,
+        mt_rand(0, 0xffff),
+        mt_rand(0, 0xffff),
+        mt_rand(0, 0xffff)
     );
 }
 
