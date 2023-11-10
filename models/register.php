@@ -54,7 +54,8 @@ function getExistUser($email, $crud)
     }
 }
 
-function registerUser($name, $email, $password, $crud) {
+function registerUser($name, $email, $password, $crud)
+{
     $dataUser = [
         'id' => $helper->generateUuidv4(),
         'correo' => $email,
