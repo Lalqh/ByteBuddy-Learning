@@ -1,3 +1,6 @@
+import { isEmpty, validateEmail } from "./Generals/from.js";
+import { postData } from "./Generals/requests.js";
+
 eventListeners();
 
 function eventListeners() {
@@ -7,62 +10,26 @@ function eventListeners() {
 function validateData(e) {
   //Evitar que haga la accion
   e.preventDefault();
+  const from = document.querySelector("#from");
+  const values = new FormData(from);
 
-  //Obetner valores
-  const name = document.querySelector("#name").value,
-    email = document.querySelector("#email").value,
-    password = document.querySelector("#password").value;
-
-  //Si un dato no se ingreso
-  if (name === "" || email === "" || password === "") {
-    Swal.fire({
-      icon: "error",
-      title: "Error!",
-      text: "¡Debes de llenar todos los campos!",
-    });
-  } else {
-
-    const dataUser = new FormData();
-    dataUser.append("name", name);
-    dataUser.append("email", email);
-    dataUser.append("password", password);
-
-    $.ajax({
-      url: "../models/register.php",
-      type: "POST",
-      data: dataUser,
-      processData: false,
-      contentType: false,
-      success: function (data) {
-        const jsonData = JSON.parse(data);
-        if (jsonData.respuesta === "correcto") {
-          // El usuario se registró correctamente
-          Swal.fire({
-            title: "Usuario creado",
-            text: "El usuario se registró correctamente",
-            icon: "success",
-          }).then((result) => {
-            if (result.value) {
-              window.location.href = "../views/login.html";
-            }
-          });
-        }
-        // Si el usuario ya existe
-        else if (jsonData.respuesta === "registrado") {
-          Swal.fire({
-            title: "Este usuario ya existe",
-            text: "El usuario ya existe, inicie sesión con su usuario y contraseña",
-            icon: "error",
-          }).then((result) => {
-            if (result.value) {
-              cleanFrom();
-              window.location.href = "../views/login.html";
-            }
-          });
-        }
-      },
+  if (!isEmpty(values)) {
+    if (validateEmail(values)) {
+    postData('../models/register.php', values).
+    then((resp)=>{
+      const type = resp === "ok" ? "success" : "error"
+      Swal.fire({
+        icon: type,
+        title: type,
+        text: resp.data
+      }).then((result)=>{
+        if (result.isConfirmed) {
+          cleanFrom();
+        } 
+      });
     });
   }
+}
 }
 
 function cleanFrom() {
