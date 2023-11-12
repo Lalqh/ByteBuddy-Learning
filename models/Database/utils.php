@@ -25,13 +25,10 @@ class Crud
         $sql = "INSERT INTO $table($keys) VALUES($values)";
         try {
             $result = $this->dbConnection->query($sql);
-
             if ($result)
                 return $result;
             else
                 return false;
-
-
         } catch (Exception $e) {
             echo "Error insert: " . $e->getMessage();
             return false;

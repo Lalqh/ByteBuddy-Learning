@@ -1,19 +1,38 @@
 <?php
 
-class Responses {
+/**
+ * Summary of Response
+ */
+class Response
+{
+    private $message;
+    private $code;
 
-    public function __construct() {
+    /**
+     * Summary of __construct
+     */
+    public function __construct($message, $code)
+    {
+        $this->message = $message;
+        $this->code = $code;
     }
 
-    public function sendResponse($message, $data = "") {
+    /**
+     * Summary of send
+     * @param mixed $message
+     * @param mixed $code
+     * @return never
+     */
+    public function send()
+    {
         header('Content-Type: application/json');
         http_response_code(200);
         echo json_encode([
-            'message' => $message,
-            'data' => $data,
+            'message' => $this->message,
+            'data' => $this->code,
         ]);
         exit();
-    } 
+    }
 }
 
 ?>

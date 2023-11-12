@@ -1,4 +1,4 @@
-import { isEmpty, validateEmail } from "./Generals/from.js";
+import { isEmpty, validateEmail } from "./Generals/form.js";
 import { postData } from "./Generals/requests.js";
 
 eventListeners();
@@ -15,21 +15,21 @@ function validateData(e) {
 
   if (!isEmpty(values)) {
     if (validateEmail(values)) {
-    postData('../models/register.php', values).
-    then((resp)=>{
-      const type = resp === "ok" ? "success" : "error"
-      Swal.fire({
-        icon: type,
-        title: type,
-        text: resp.data
-      }).then((result)=>{
-        if (result.isConfirmed) {
-          cleanFrom();
-        } 
-      });
-    });
+      postData('../models/register.php', values).
+        then((resp) => {
+          const type = resp == "ok" ? "success" : "error"
+          Swal.fire({
+            icon: type,
+            title: type,
+            text: resp.data
+          }).then((result) => {
+            if (result.isConfirmed) {
+              cleanFrom();
+            }
+          })
+        });
+    }
   }
-}
 }
 
 function cleanFrom() {
