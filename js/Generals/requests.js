@@ -29,7 +29,7 @@ export const postData = (url, data) => {
         Swal.fire({
           icon: "error",
           title: "Error!",
-          text: `Ocurrio un error${error}`,
+          text: `Ocurrio un error`,
         });
         reject(error);
       });

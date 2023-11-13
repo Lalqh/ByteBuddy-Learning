@@ -11,7 +11,7 @@ class Response
     /**
      * Summary of __construct
      */
-    public function __construct($message, $code)
+    public function __construct($code, $message)
     {
         $this->message = $message;
         $this->code = $code;

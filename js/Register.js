@@ -17,14 +17,15 @@ function validateData(e) {
     if (validateEmail(values)) {
       postData('../models/register.php', values).
         then((resp) => {
-          const type = resp == "ok" ? "success" : "error"
+          console.log(resp)
+          const type = resp.data == "ok" ? "success" : "error"
           Swal.fire({
             icon: type,
             title: type,
-            text: resp.data
+            text: resp.message
           }).then((result) => {
             if (result.isConfirmed) {
-              cleanFrom();
+              cleanForm();
             }
           })
         });
@@ -32,7 +33,7 @@ function validateData(e) {
   }
 }
 
-function cleanFrom() {
+function cleanForm() {
   document.querySelector("#name").value = ""; // Limpiar campos
   document.querySelector("#email").value = "";
   document.querySelector("#password").value = "";

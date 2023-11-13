@@ -7,7 +7,7 @@ export function validateEmail(form) {
             icon: "error",
             title: "Error!",
             text: `El correo es incorrecto`,
-          });
+        });
         return false;
     }
     return true;
@@ -18,17 +18,26 @@ export function isEmpty(form) {
     const formDataArray = Array.from(form.entries());
 
     for (const [key, value] of formDataArray) {
-        
+
         if (value.trim() === "") {
             emptyValues = true;
             Swal.fire({
                 icon: "error",
                 title: "Error!",
                 text: `El campo ${key} está vacío.`,
-              });
+            });
         }
     }
 
     return emptyValues;
 }
+
+// export function cleanForm(form) {
+//     let emptyValues = false;
+//     const formDataArray = Array.from(form.entries());
+
+//     for (const [key, value] of formDataArray) {
+//         value = ""
+//     }
+// }
 
