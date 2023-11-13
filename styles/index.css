@@ -1,0 +1,73 @@
+:root {
+  --Opc_Color_1: white;
+  --Opc_Color_2: orangered;
+}
+img {
+  width: 120px;
+  height: 80px;
+}
+.navigation_bar {
+  border: 2px solid rgba(255, 255, 255, 1);
+  border-radius: 30px;
+  backdrop-filter: blur(4px);
+  z-index: 1;
+}
+* {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+.nav-link {
+  color: var(--Opc_Color_1);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-size: 25px;
+}
+.nav-link:hover {
+  color: var(--Opc_Color_2);
+}
+.Background_Index {
+  position: fixed;
+  width: auto;
+  height: auto;
+  z-index: 0;
+}
+#demo {
+  position: relative;
+}
+.carousel-inner {
+  width: 20%;
+  margin: -20px auto 0;
+}
+.carousel-inner img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  object-position: center;
+}
+.carousel-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  backdrop-filter: blur(4px);
+  color: var(--Opc_Color_1);
+  border-radius: 25px;
+  padding: 10px;
+}
+.carousel-indicators {
+  bottom: -40px;
+}
+.container-vision,
+.container-mission,
+.container-about-us,
+.container-location {
+  position: relative; /* Añade esto */
+  border: 2px solid rgba(255, 255, 255, 1);
+  color: var(--Opc_Color_1);
+  border-radius: 30px;
+  backdrop-filter: blur(4px);
+  z-index: 1;
+  text-align: center;
+  margin-top: 50px;
+}
