@@ -17,13 +17,29 @@
     <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createCourseModal">
         Curso nuevo
     </button> -->
-    <div class="fixed-top text-end p-3">
-        <button type="button" class="btn btn-primary rounded-pill" data-bs-toggle="modal"
-            data-bs-target="#createCourseModal" data-bs-placement="left" title="Agregar">
-            <i>Nuevo</i>
-        </button>
-    </div>
+    <div id="main_content" class="container mt-5">
+        <div id="courses" class="container d-flex">
+            <div class="row">
+                <div class="col">
+                    <div class="card text-start">
+                        <img class="card-img-top" src="holder.js/100px180/" alt="Title">
+                        <div class="card-body">
+                            <h4 class="card-title">Title</h4>
+                            <p class="card-text">Body</p>
+                        </div>
+                    </div>
 
+                </div>
+            </div>
+        </div>
+
+        <div class="fixed-top text-end p-3">
+            <button type="button" class="btn btn-primary rounded-pill" data-bs-toggle="modal"
+                data-bs-target="#createCourseModal" data-bs-placement="left" title="Agregar">
+                <i>Nuevo</i>
+            </button>
+        </div>
+    </div>
     <div id="createCourseModal" class="modal fade" tabindex="-1">
         <div class="modal-dialog .modal-dialog-centered">
             <div class="modal-content">
