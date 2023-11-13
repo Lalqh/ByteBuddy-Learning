@@ -56,4 +56,26 @@ class User
 
 }
 
+class Course
+{
+    private $name;
+    private $description;
+    private $price;
+
+    public function __construct($courseArray)
+    {
+        $this->name = $courseArray["name"];
+        $this->description = $courseArray["description"];
+        $this->price = $courseArray["price"];
+    }
+    public function getData()
+    {
+        return [
+            "nombre" => $this->name,
+            "descripcion" => $this->description,
+            "precio" => $this->price
+        ];
+    }
+}
+
 ?>

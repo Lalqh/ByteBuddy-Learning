@@ -4,7 +4,7 @@ require_once './Database/conector.php';
 require_once './Database/utils.php';
 require_once './Generals/helpers.php';
 require_once './Generals/responses.php';
-require_once './Generals/User.php';
+require_once './Generals/objects.php';
 
 $db = Db::getInstance()->getConnection();
 $crud = new Crud($db);
