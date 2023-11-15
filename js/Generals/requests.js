@@ -6,9 +6,6 @@ export const postData = (url, data) => {
 
     fetch(url, {
       method: "POST",
-      /*headers: {
-          Authorization: `Bearer ${token}`,
-        },*/
       body: data,
     })
       .then(async (response) => {
