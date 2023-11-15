@@ -4,7 +4,7 @@ require_once './Database/conector.php';
 require_once './Database/utils.php';
 require_once './Generals/helpers.php';
 require_once './Generals/responses.php';
-require_once './Generals/User.php';
+require_once './Generals/objects.php';
 
 $db = Db::getInstance()->getConnection();
 $crud = new Crud($db);
@@ -23,6 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($user->exists()) {
         $response = new Response("exist", "Este usuario ya existe, inicia sesión o crea otro usuario");
     } else {
+
         if ($user->create()) {
             $response = new Response("ok", "Te has registrado de manera correcta");
         } else {
