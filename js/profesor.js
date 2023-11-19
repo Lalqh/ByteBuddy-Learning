@@ -1,6 +1,7 @@
 import { isEmpty } from "./Generals/form.js";
 import { postData } from "./Generals/requests.js";
-import { listOfCourses } from "./Generals/domClasses.js";
+import { Course, listOfCourses } from "./Generals/domClasses.js";
+
 
 const firstReq = new FormData();
 firstReq.append('req', 'get_courses');
@@ -27,21 +28,24 @@ function submitForm(e) {
     if (!isEmpty(values)) {
         postData('../models/courses.php', values).
             then((resp) => {
-                const type = resp.data == "ok" ? "success" : "error"
+                const type = resp.code == "ok" ? "success" : "error"
+                let currentId = Array.from(resp.data);
                 Swal.fire({
                     icon: type,
                     title: type,
-                    text: resp.data
+                    text: 'Guardado con éxito'
+
                 }).then((result) => {
                     if (result.isConfirmed) {
+                        let newCourse = new Course(
+                            currentId[0]["id"],
+                            values.get('nombreCurso'),
+                            values.get('descripcionCurso'),
+                            values.get('precioCurso'));
+                        grid.appendChild(newCourse.create());
                     }
                 })
             });
     }
 }
 
-// function cleanForm() {
-//     document.querySelector("#name").value = ""; // Limpiar campos
-//     document.querySelector("#email").value = "";
-//     document.querySelector("#password").value = "";
-// }

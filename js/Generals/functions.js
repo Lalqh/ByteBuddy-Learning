@@ -17,55 +17,56 @@ export function convertToInput(element) {
     input.focus();
 
     // Agrega un evento de pérdida de foco (blur) al input para manejar la finalización de la edición
-    input.addEventListener("blur", function () {
+    input.addEventListener("keyup", function (event) {
         // Reemplaza el input con un nuevo párrafo que tiene el texto actualizado
-        Swal.fire({
-            title: '¿Estás seguro?',
-            text: "No podrás revertir esta acción!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Si, guardar cambios!'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                copyNode.innerHTML = input.value;
-                let editData = new FormData();
-                editData.append('req', 'edit_course');
-                editData.append('column', element.getAttribute('column'));
-                editData.append('value', input.value);
-                editData.append('id', element.getAttribute('course_id'));
-                for (var [clave, valor] of editData.entries()) {
-                    console.log(clave, valor);
-                }
-                postData('../models/courses.php', editData)
-                    .then((resp) => {
-                        if (resp.code === "ok") {
-                            Swal.fire(
-                                'Guardado!',
-                                'Tu cambio ha sido guardado.',
-                                'success'
-                            )
-                        } else {
-                            Swal.fire({
-                                title: 'Error',
-                                text: resp.message,
-                                icon: 'error',
-                                customClass: 'swal-wide',
-                            })
-                        }
-                    })
-                input.parentNode.replaceChild(copyNode, input);
+        if (event.key === 'Enter') {
+            Swal.fire({
+                title: '¿Estás seguro?',
+                text: "No podrás revertir esta acción!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Si, guardar cambios!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    copyNode.innerHTML = input.value;
+                    let editData = new FormData();
+                    editData.append('req', 'edit_course');
+                    editData.append('column', element.getAttribute('column'));
+                    editData.append('value', input.value);
+                    editData.append('id', element.getAttribute('course_id'));
 
-            } else {
-                copyNode.innerHTML = input.defaultValue;
-                Swal.fire(
-                    'Cancelado!',
-                    'Tu cambio no se ha guardado.',
-                    'error'
-                )
-            }
-        })
+                    postData('../models/courses.php', editData)
+                        .then((resp) => {
+                            if (resp.code === "ok") {
+                                Swal.fire(
+                                    'Guardado!',
+                                    'Tu cambio ha sido guardado.',
+                                    'success'
+                                )
+                            } else {
+                                Swal.fire({
+                                    title: 'Error',
+                                    text: resp.message,
+                                    icon: 'error',
+                                    customClass: 'swal-wide',
+                                })
+                            }
+                        })
+                    input.parentNode.replaceChild(copyNode, input);
+
+                } else {
+                    copyNode.innerHTML = input.defaultValue;
+                    Swal.fire(
+                        'Cancelado!',
+                        'Tu cambio no se ha guardado.',
+                        'error'
+                    )
+                }
+            })
+
+        }
 
     });
 

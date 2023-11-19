@@ -30,8 +30,7 @@ class Crud
             else
                 return false;
         } catch (Exception $e) {
-            echo "Error insert: " . $e->getMessage();
-            return false;
+            return "Error insert: " . $e->getMessage();
         }
     }
     public function update(string $table, string $column, string|int $value, string|int $id)
@@ -58,8 +57,7 @@ class Crud
             }
             return $result;
         } catch (Exception $e) {
-            echo "Error select: " . $e->getMessage();
-            exit();
+            return "Error select: " . $e->getMessage();
         }
     }
 
@@ -73,10 +71,22 @@ class Crud
             }
             return $result;
         } catch (Exception $e) {
-            echo "Error select: " . $e->getMessage();
-            return false;
+            return "Error update: " . $e->getMessage();
+
         }
     }
-
+    public function getMaxId(string $table)
+    {
+        $sql = "SELECT MAX(id) as id FROM $table";
+        try {
+            $result = $this->dbConnection->query($sql);
+            if ($result === false) {
+                throw new Exception("Error en la consulta: " . $this->dbConnection->error);
+            }
+            return $result;
+        } catch (Exception $e) {
+            return "Error select Max: " . $e->getMessage();
+        }
+    }
 }
 ?>

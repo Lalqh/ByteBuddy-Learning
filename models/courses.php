@@ -19,7 +19,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         if (!$result) {
             $response = new Response("error", "Error al crear el curso");
         } else {
-            $response = new Response("ok", "Curso creado exitosamente!");
+            $result = DB::setQueryToArray($crud->getMaxId('Cursos'));
+            $response = new Response("ok", "Curso creado exitosamente!", $result);
         }
     } else if ($_POST["req"] === "get_courses") {
         $crud = new Crud($db);

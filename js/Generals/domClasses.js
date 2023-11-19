@@ -13,8 +13,11 @@ export class listOfCourses {
     setDestination(dest) {
         this.destination = dest;
     }
+    appendCourse(course) {
+        this.destination.appendChild(course.create())
+    }
 }
-class Course {
+export class Course {
     constructor(id, title, description, price) {
         this.id = id;
         this.title = document.createElement("h4");
