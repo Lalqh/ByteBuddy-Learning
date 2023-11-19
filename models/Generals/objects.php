@@ -1,7 +1,7 @@
 <?php
 
 require_once('helpers.php');
-require_once('./Auth/jwtManager.php');
+require_once(__DIR__ . '/../Auth/jwtManager.php');
 
 class User
 {

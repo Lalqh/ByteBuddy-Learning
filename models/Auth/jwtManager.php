@@ -1,6 +1,6 @@
 <?php
 
-require 'C:/xampp/htdocs/ByteBuddyLearning/vendor/autoload.php';
+require __DIR__ . '/../../vendor/autoload.php';
 
 use \Firebase\JWT\JWT;
 
@@ -9,8 +9,9 @@ class JwtManager
     private $secretKey;
     private $expirationTime;
 
-    public function __construct(){
-        $this->secretKey= "1234";
+    public function __construct()
+    {
+        $this->secretKey = "1234";
         $this->expirationTime = time() + (14 * 24 * 60 * 60); // 14 días
     }
 
@@ -32,13 +33,14 @@ class JwtManager
         }
     }
 
-    public function verifyJwt($token){
+    public function verifyJwt($token)
+    {
         try {
-            $decodedToken = JWT::decode($token,  $this->secretKey,  array('HS256'));
+            $decodedToken = JWT::decode($token, $this->secretKey, array('HS256'));
             $tokenData = (array) $decodedToken;
-            return($tokenData);
+            return ($tokenData);
         } catch (Exception $e) {
-           return false;
+            return false;
         }
     }
 }
