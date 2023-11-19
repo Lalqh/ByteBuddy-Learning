@@ -21,7 +21,7 @@
     <section class="Login_Form">
       <div class="Form_Box">
         <div class="Form_Value">
-          <form action="" method="POST" id="Form_Login">
+          <form method="POST" id="login">
             <h2 id="Title_Login">Inicia sesión</h2>
             <div class="Input_Box">
               <svg
@@ -43,7 +43,7 @@
                 type="email"
                 name="email"
                 title="Ingrese su correo electrónico"
-                id="Email"
+                id="email"
                 autocomplete="off"
               />
               <label for="email">Correo electrónico</label>
@@ -65,7 +65,7 @@
                 type="password"
                 name="password"
                 title="Ingrese su contraseña"
-                id="Password"
+                id="password"
                 autocomplete="off"
               />
               <label for="password">Contraseña</label>
@@ -88,5 +88,9 @@
         </div>
       </div>
     </section>
+    <footer>
+      <script type="module" src="../js/login.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    </footer>
   </body>
 </html>

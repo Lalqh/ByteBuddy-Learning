@@ -60,7 +60,7 @@ class Crud
             return $result;
         } catch (Exception $e) {
             echo "Error select: " . $e->getMessage();
-            return false;
+            exit();
         }
     }
 

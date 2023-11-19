@@ -9,10 +9,10 @@ export const postData = (url, data) => {
       body: data,
     })
       .then(async (response) => {
-        const { message, data } = await response.json();
+        const { code, message, data } = await response.json();
         // console.log(response.text());
         if (response.status === 200) {
-          resolve({ message, data });
+          resolve({ code, message, data });
         } else {
           Swal.fire({
             icon: "error",

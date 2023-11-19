@@ -19,8 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Encriptar la contraseña
 
     $user = new User($name, $password, $email);
-
-    if ($user->exists()) {
+    if ($user->exists()['exists']) {
         $response = new Response("exist", "Este usuario ya existe, inicia sesión o crea otro usuario");
     } else {
 

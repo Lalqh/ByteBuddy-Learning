@@ -1,6 +1,8 @@
 <?php
+
 require_once('helpers.php');
-require_once('responses.php');
+require_once('./Auth/jwtManager.php');
+
 class User
 {
     private $uuid;
@@ -9,6 +11,7 @@ class User
     private $email;
     private $dbConnection;
     private $helper;
+    private $classJwt;
 
     public function __construct($userName = "", $password = "", $email = "")
     {
@@ -20,6 +23,7 @@ class User
         $this->email = $email;
         $this->dbConnection = Db::getInstance()->getConnection();
         $this->helper = new Helper();
+        $this->classJwt = new JwtManager();
     }
     public function create()
     {
@@ -33,27 +37,45 @@ class User
         $insertData = $crud->insert('usuarios', $dataUser);
         return $insertData;
     }
+
     public function exists()
     {
         $crud = new Crud($this->dbConnection);
         $email = $crud->getDbConnection()->real_escape_string($this->email); // Escapar el valor para prevenir SQL injection
 
         try {
-            $result = $crud->select('COUNT(*) as count', 'usuarios', "correo = '$email'");
+            $result = $crud->select('COUNT(*) as count, contrasena, id, idTipoUsuario', 'usuarios', "correo = '$email'");
 
             if ($result === false) {
                 throw new Exception("Error en la consulta: " . $crud->dbConnection->error);
             }
 
             $row = $result->fetch_assoc();
-            return $row['count'] > 0; // Si count es mayor que 0, el usuario existe
+            $exists = $row['count'] > 0; // Si count es mayor que 0, el usuario existe
+
+            $data = [
+                'exists' => $exists,
+                'contrasena' => $exists ? $row['contrasena'] : null,
+                'id' => $exists ? $row['id'] : null,
+                'idTipoUsuario' => $exists ? $row['idTipoUsuario'] : null
+            ];
+
+            return $data;
+
         } catch (Exception $e) {
-            $response = new Response('Error', $e->getMessage());
-            return false;
+            return $e;
         }
     }
 
-
+    public function login($passwordInDb, $passwordFrom, $dataUser)
+    {
+        if (password_verify($passwordFrom, $passwordInDb)) {
+            $token = $this->classJwt->createJwt($dataUser['id']);
+            return $token;
+        } else {
+            return false;
+        }
+    }
 }
 
 class Course
