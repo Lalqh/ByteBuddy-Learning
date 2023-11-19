@@ -23,11 +23,27 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
     } else if ($_POST["req"] === "get_courses") {
         $crud = new Crud($db);
-        $result = $crud->select("*", "Cursos", "true");
+        $result = $crud->select("*", "Cursos", "_status = 'post'");
         if (!$result) {
             $response = new Response("error", "Error al obtener los cursos");
         } else {
-            $response = new Response("ok", DB::setQueryToArray($result));
+            $response = new Response("ok", "Cursos obtenidos con éxito", DB::setQueryToArray($result));
+        }
+    } else if ($_POST["req"] === "edit_course") {
+        $crud = new Crud($db);
+        $result = $crud->update("Cursos", $_POST["column"], $_POST["value"], $_POST["id"]);
+        if (!$result) {
+            $response = new Response("error", "Error al actualizar el curso: " . $result);
+        } else {
+            $response = new Response("ok", "Curso actualizado con éxito");
+        }
+    } else if ($_POST["req"] === "delete_course") {
+        $crud = new Crud($db);
+        $result = $crud->delete("Cursos", $_POST["id"]);
+        if (!$result) {
+            $response = new Response("error", "Error al eliminar el curso: " . $result);
+        } else {
+            $response = new Response("ok", "Curso eliminado con éxito");
         }
     }
 }

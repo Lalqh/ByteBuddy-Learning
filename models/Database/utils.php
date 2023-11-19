@@ -34,9 +34,9 @@ class Crud
             return false;
         }
     }
-    public function update(string $table, string $column, string|int $id)
+    public function update(string $table, string $column, string|int $value, string|int $id)
     {
-        $sql = "UPDATE $table SET $column = concat($column,$id) WHERE id = $id";
+        $sql = "UPDATE $table SET $column = '$value' WHERE id = '$id'";
         try {
             $result = $this->dbConnection->query($sql);
             if ($result === false) {
@@ -44,8 +44,7 @@ class Crud
             }
             return $result;
         } catch (Exception $e) {
-            echo "Error update: " . $e->getMessage();
-            return false;
+            return "Error update: " . $e->getMessage();
         }
 
     }
@@ -64,9 +63,9 @@ class Crud
         }
     }
 
-    public function delete(string $columns = "*", string $table, string $conditionals = "false")
+    public function delete(string $table, string|int $id)
     {
-        $sql = "DELETE $columns FROM $table WHERE $conditionals";
+        $sql = "UPDATE $table SET _status = 'trash' WHERE id = '$id'";
         try {
             $result = $this->dbConnection->query($sql);
             if ($result === false) {

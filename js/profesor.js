@@ -7,9 +7,10 @@ firstReq.append('req', 'get_courses');
 const grid = document.querySelector('#courses');
 postData('../models/courses.php', firstReq)
     .then((resp) => {
-        if (resp.data === "ok") {
+        if (resp.code === "ok") {
             let courses = new listOfCourses(grid);
-            courses.render(resp.message);
+            console.log(resp.message)
+            courses.render(resp.data);
         }
     })
 eventListeners();
