@@ -21,6 +21,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         } else {
             $response = new Response("ok", "Curso creado exitosamente!");
         }
+    } else if ($_POST["req"] === "get_courses") {
+        $crud = new Crud($db);
+        $result = $crud->select("*", "Cursos", "true");
+        if (!$result) {
+            $response = new Response("error", "Error al obtener los cursos");
+        } else {
+            $response = new Response("ok", DB::setQueryToArray($result));
+        }
     }
 }
 

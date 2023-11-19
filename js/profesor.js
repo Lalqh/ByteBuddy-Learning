@@ -1,6 +1,17 @@
-import { isEmpty, validateEmail } from "./Generals/form.js";
+import { isEmpty } from "./Generals/form.js";
 import { postData } from "./Generals/requests.js";
+import { listOfCourses } from "./Generals/domClasses.js";
 
+const firstReq = new FormData();
+firstReq.append('req', 'get_courses');
+const grid = document.querySelector('#courses');
+postData('../models/courses.php', firstReq)
+    .then((resp) => {
+        if (resp.data === "ok") {
+            let courses = new listOfCourses(grid);
+            courses.render(resp.message);
+        }
+    })
 eventListeners();
 
 function eventListeners() {
@@ -12,11 +23,6 @@ function submitForm(e) {
     const formCreateCourse = document.querySelector("#createCourse");
     const values = new FormData(formCreateCourse);
     values.append('req', 'create');
-    //console.log(values.entries());
-    // let aux = Array.from(values.entries());
-    // aux.forEach(element => {
-    //     console.log(element);
-    // })
     if (!isEmpty(values)) {
         postData('../models/courses.php', values).
             then((resp) => {
@@ -27,11 +33,9 @@ function submitForm(e) {
                     text: resp.data
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        //cleanForm();
                     }
                 })
             });
-
     }
 }
 
