@@ -1,12 +1,12 @@
 import { isEmpty } from "./Generals/form.js";
-import { postData } from "./Generals/requests.js";
+import { postData, validateToken } from "./Generals/requests.js";
 import { Course, listOfCourses } from "./Generals/domClasses.js";
 
 
 const firstReq = new FormData();
 firstReq.append('req', 'get_courses');
 const grid = document.querySelector('#courses');
-postData('../models/courses.php', firstReq)
+postData('../../models/courses.php', firstReq)
     .then((resp) => {
         if (resp.code === "ok") {
             let courses = new listOfCourses(grid);
@@ -17,6 +17,14 @@ postData('../models/courses.php', firstReq)
 eventListeners();
 
 function eventListeners() {
+    // document.addEventListener('DOMContentLoaded', function () {
+    //     validateToken('../../models/Auth/jwtManager.php')
+    //         .then((resp) => {
+    //             if (resp.code === "ok") {
+    //                 console.log(resp.message)
+    //             }
+    //         })
+    // })
     document.querySelector("#createCourse").addEventListener("submit", submitForm);
 }
 
