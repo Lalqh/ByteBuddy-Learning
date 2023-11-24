@@ -17,29 +17,58 @@
     <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createCourseModal">
         Curso nuevo
     </button> -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">Admin Cursos</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Cursos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Estudiantes</a>
+                    </li>
+                    <!-- Agrega más elementos según sea necesario -->
+                </ul>
+                <!-- Puedes agregar elementos a la derecha, como un formulario de búsqueda o un botón de cierre de sesión -->
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Cerrar Sesión</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
     <div id="main_content" class="container mt-5">
         <div class="container d-grid">
             <div id="courses" class="row">
-                <!-- <div class="col">
-                    <div class="card text-start">
-                        <img class="card-img-top" src="holder.js/100px180/" alt="Title">
-                        <div class="card-body">
-                            <h4 class="card-title">Title</h4>
-                            <p class="card-text">Body</p>
-                        </div>
-                    </div> -->
+                <!-- <div class=" col"> f
+                <div class="card text-start">
+                    <img class="card-img-top" src="holder.js/100px180/" alt="Title">
+                    <div class="card-body">
+                        <h4 class="card-title">Title</h4>
+                        <p class="card-text">Body</p>
+                    </div>
+                </div> -->
 
             </div>
         </div>
     </div>
 
-    <div class="fixed-top text-end p-3">
+    <div class="fixed-bottom text-end p-3">
         <button type="button" class="btn btn-primary rounded-pill" data-bs-toggle="modal"
             data-bs-target="#createCourseModal" data-bs-placement="left" title="Agregar" z-index="0">
             <i>Nuevo</i>
         </button>
     </div>
-    </div>
+
     <div id="createCourseModal" class="modal fade" tabindex="-1">
         <div class="modal-dialog .modal-dialog-centered">
             <div class="modal-content">
@@ -81,7 +110,7 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
             crossorigin="anonymous"></script>
-        <script type="module" src="../js/profesor.js"></script>
+        <script type="module" src="../../js/profesor.js"></script>
 
     </footer>
 </body>

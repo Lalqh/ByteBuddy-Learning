@@ -37,7 +37,7 @@ export function convertToInput(element) {
                     editData.append('value', input.value);
                     editData.append('id', element.getAttribute('course_id'));
 
-                    postData('../models/courses.php', editData)
+                    postData('../../models/courses.php', editData)
                         .then((resp) => {
                             if (resp.code === "ok") {
                                 Swal.fire(

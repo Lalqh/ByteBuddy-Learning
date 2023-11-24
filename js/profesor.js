@@ -6,7 +6,7 @@ import { Course, listOfCourses } from "./Generals/domClasses.js";
 const firstReq = new FormData();
 firstReq.append('req', 'get_courses');
 const grid = document.querySelector('#courses');
-postData('../models/courses.php', firstReq)
+postData('../../models/courses.php', firstReq)
     .then((resp) => {
         if (resp.code === "ok") {
             let courses = new listOfCourses(grid);
@@ -17,6 +17,14 @@ postData('../models/courses.php', firstReq)
 eventListeners();
 
 function eventListeners() {
+    // document.addEventListener('DOMContentLoaded', function () {
+    //     validateToken('../../models/Auth/jwtManager.php')
+    //         .then((resp) => {
+    //             if (resp.code === "ok") {
+    //                 console.log(resp.message)
+    //             }
+    //         })
+    // })
     document.querySelector("#createCourse").addEventListener("submit", submitForm);
 }
 
@@ -26,7 +34,7 @@ function submitForm(e) {
     const values = new FormData(formCreateCourse);
     values.append('req', 'create');
     if (!isEmpty(values)) {
-        postData('../models/courses.php', values).
+        postData('../../models/courses.php', values).
             then((resp) => {
                 const type = resp.code == "ok" ? "success" : "error"
                 let currentId = Array.from(resp.data);
