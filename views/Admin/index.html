@@ -1,42 +1,51 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Administradores</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
 </head>
+
 <body>
 
-    <div class="container-fluid">
-        <div class="row">
-          <nav class="col-md-3 col-lg-2 d-md-block bg-light min-vh-100">
-              <div class="p-4">
-                <h3>Logo</h3>
-                <ul class="nav flex-column">
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">Usuarios</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">Maestros</a>
-                  </li>
-                </ul>
-              </div>
-           
-          </nav>
-    
-          <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-           <div class="p-3" id="data"></div>
-          </main>
-        </div>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="#">Admin Cursos</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="#">Usuarios</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Maestros</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#">Cerrar Sesión</a>
+          </li>
+        </ul>
       </div>
+    </div>
+  </nav>
 
-      <footer>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-        <script type="module" src="../../js/Admin/index.js"></script>
-      </footer>
-      
+  <main>
+    <div class="p-3" id="data"></div>
+  </main>
+
+  <footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script type="module" src="../../js/Admin/index.js"></script>
+  </footer>
+
 </body>
+
 </html>
