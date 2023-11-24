@@ -1,5 +1,5 @@
 import { isEmpty } from "./Generals/form.js";
-import { postData, validateToken } from "./Generals/requests.js";
+import { postData } from "./Generals/requests.js";
 import { Course, listOfCourses } from "./Generals/domClasses.js";
 
 
@@ -34,7 +34,7 @@ function submitForm(e) {
     const values = new FormData(formCreateCourse);
     values.append('req', 'create');
     if (!isEmpty(values)) {
-        postData('../models/courses.php', values).
+        postData('../../models/courses.php', values).
             then((resp) => {
                 const type = resp.code == "ok" ? "success" : "error"
                 let currentId = Array.from(resp.data);

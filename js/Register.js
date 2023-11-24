@@ -18,7 +18,7 @@ function validateData(e) {
       postData('../models/register.php', values).
         then((resp) => {
           console.log(resp)
-          const type = resp.data == "ok" ? "success" : "error"
+          const type = resp.code == "ok" ? "success" : "error"
           Swal.fire({
             icon: type,
             title: type,

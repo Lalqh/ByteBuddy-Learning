@@ -90,7 +90,7 @@ export class Course {
             deleteData.append('req', 'delete_course');
             deleteData.append('id', this.id);
             if (result.isConfirmed) {
-                postData('../models/courses.php', deleteData)
+                postData('../../models/courses.php', deleteData)
                     .then((resp) => {
                         if (resp.code === "ok") {
                             Swal.fire(
