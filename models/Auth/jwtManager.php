@@ -15,10 +15,11 @@ class JwtManager
         $this->expirationTime = time() + (14 * 24 * 60 * 60); // 14 días
     }
 
-    public function createJwt($uuid)
+    public function createJwt($uuid, $typeUser)
     {
         $tokenData = array(
-            "id" => $uuid
+            "id" => $uuid,
+            "tipoUsuario" => $typeUser
         );
 
         try {

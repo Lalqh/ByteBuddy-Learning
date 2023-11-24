@@ -49,18 +49,7 @@ class User
             if ($result === false) {
                 throw new Exception("Error en la consulta: " . $crud->dbConnection->error);
             }
-
-            $row = $result->fetch_assoc();
-            $exists = $row['count'] > 0; // Si count es mayor que 0, el usuario existe
-
-            $data = [
-                'exists' => $exists,
-                'contrasena' => $exists ? $row['contrasena'] : null,
-                'id' => $exists ? $row['id'] : null,
-                'idTipoUsuario' => $exists ? $row['idTipoUsuario'] : null
-            ];
-
-            return $data;
+            return DB::setQueryToArray($result);
 
         } catch (Exception $e) {
             return $e;
@@ -70,7 +59,7 @@ class User
     public function login($passwordInDb, $passwordFrom, $dataUser)
     {
         if (password_verify($passwordFrom, $passwordInDb)) {
-            $token = $this->classJwt->createJwt($dataUser['id']);
+            $token = $this->classJwt->createJwt($dataUser[0]['id'], $dataUser[0]['idTipoUsuario']);
             return $token;
         } else {
             return false;

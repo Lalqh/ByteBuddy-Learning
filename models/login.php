@@ -17,10 +17,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $user = new User("", "", $email);
     $data = $user->exists();
-    if ($data['exists']) {
-       $token =  $user->login($data['contrasena'], $password ,$data);
+    if ($data) {
+       $token =  $user->login($data[0]['contrasena'], $password ,$data);
        if ($token) {
-        $response = new Response("ok", "se inicion sesion", array('token'=> $token, 'typeUser' => $data['idTipoUsuario']));
+        $response = new Response("ok", "se inicion sesion", array("token"=> $token, "typeUser"=> $data[0]['idTipoUsuario']));
        }else{
         $response = new Response("error", "La contraseña ingresada es incorrecta");
        }

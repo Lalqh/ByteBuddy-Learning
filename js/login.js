@@ -31,24 +31,12 @@ function validateData(e) {
         const type = resp.code == "ok" ? "success" : "error";
         Swal.fire({
           icon: type,
-          title: type,
-          text: resp.message,
-        }).then((result) => {
+          title: resp.message
+        }).then(async (result) => {
           if (result.isConfirmed) {
             if (resp.code == "ok") {
-              saveJwt(resp.data.token);
-              const typeUser = parseInt(resp.data.typeUser);
-              switch (typeUser) {
-                case 1:
-                  window.location.href = "./Usuario/index.html";
-                  break;
-                case 2:
-                  window.location.href = "./Maestro/index.html";
-                  break;
-                case 3:
-                  window.location.href = "./Admin/index.html";
-                  break;
-              }
+              await saveJwt(resp.data.token);
+              await typeUser(parseInt(resp.data.typeUser));
             } else {
               cleanForm();
             }
@@ -64,6 +52,20 @@ function cleanForm() {
   document.querySelector("#password").value = "";
 }
 
-function saveJwt(jwt) {
+const saveJwt = async (jwt) => {
   localStorage.setItem("JWT", jwt);
-}
+};
+
+const typeUser = async (typeUser) => {
+  switch (typeUser) {
+    case 1:
+      window.location.href = "./Usuario/index.html";
+      break;
+    case 2:
+      window.location.href = "./Maestro/index.html";
+      break;
+    case 3:
+      window.location.href = "./Admin/index.html";
+      break;
+  }
+};
