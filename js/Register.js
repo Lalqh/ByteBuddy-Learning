@@ -1,9 +1,11 @@
+import { checkSessionActive } from "./Generals/authManger.js";
 import { isEmpty, validateEmail } from "./Generals/form.js";
 import { postData } from "./Generals/requests.js";
 
 eventListeners();
 
 function eventListeners() {
+  checkSessionActive();
   document.querySelector("#from").addEventListener("submit", validateData);
 }
 

@@ -11,6 +11,7 @@ segun su tipo:
 
 import { isEmpty, validateEmail } from "./Generals/form.js";
 import { postData } from "./Generals/requests.js";
+import { reditect, saveData } from "./Generals/authManger.js"
 
 eventListeners();
 
@@ -35,10 +36,9 @@ function validateData(e) {
         }).then(async (result) => {
           if (result.isConfirmed) {
             if (resp.code == "ok") {
-              await saveJwt(resp.data.token);
-              await typeUser(parseInt(resp.data.typeUser));
-            } else {
-              cleanForm();
+              console.log(resp)
+              saveData(resp.data.token, resp.data.typeUser);
+              reditect(parseInt(resp.data.typeUser));
             }
           }
         });
@@ -46,26 +46,3 @@ function validateData(e) {
     }
   }
 }
-
-function cleanForm() {
-  document.querySelector("#email").value = "";
-  document.querySelector("#password").value = "";
-}
-
-const saveJwt = async (jwt) => {
-  localStorage.setItem("JWT", jwt);
-};
-
-const typeUser = async (typeUser) => {
-  switch (typeUser) {
-    case 1:
-      window.location.href = "./Usuario/index.html";
-      break;
-    case 2:
-      window.location.href = "./Maestro/index.html";
-      break;
-    case 3:
-      window.location.href = "./Admin/index.html";
-      break;
-  }
-};
