@@ -1,7 +1,9 @@
 import { isEmpty } from "./Generals/form.js";
 import { postData } from "./Generals/requests.js";
 import { Course, listOfCourses } from "./Generals/domClasses.js";
+import { checkTypeUser } from "./Generals/authManger.js";
 
+checkTypeUser();
 
 const firstReq = new FormData();
 firstReq.append('req', 'get_courses');
