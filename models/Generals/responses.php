@@ -26,10 +26,10 @@ class Response
      * @param mixed $data
      * @return never
      */
-    public function send()
+    public function send($CorrectToken = true)
     {
         header('Content-Type: application/json; charset=utf-8');
-        http_response_code(200);
+        http_response_code($CorrectToken == true ? 200 : 400);
         echo json_encode([
             'code' => $this->code,
             'message' => $this->message,

@@ -1,4 +1,5 @@
 export const postData = (url, data) => {
+  const token = localStorage.getItem("JWT");
   return new Promise((resolve, reject) => {
     /*
         agregar la validacion de token y que tenga uno para poder hacer peticiones
@@ -6,7 +7,11 @@ export const postData = (url, data) => {
 
     fetch(url, {
       method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
       body: data,
+      
     })
       .then(async (response) => {
         const { code, message, data } = await response.json();

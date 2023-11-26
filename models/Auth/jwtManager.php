@@ -3,11 +3,13 @@
 require __DIR__ . '/../../vendor/autoload.php';
 
 use \Firebase\JWT\JWT;
+use Firebase\JWT\Key;
 
 class JwtManager
 {
     private $secretKey;
     private $expirationTime;
+    private $token;
 
     public function __construct()
     {
@@ -33,15 +35,27 @@ class JwtManager
             return false;
         }
     }
-
-    public function verifyJwt($token)
-    {
-        try {
-            $decodedToken = JWT::decode($token, $this->secretKey, array('HS256'));
-            $tokenData = (array) $decodedToken;
-            return ($tokenData);
-        } catch (Exception $e) {
-            return false;
+    public function verifyJwt()
+{
+    $headers = apache_request_headers();
+    if (isset($headers['Authorization'])) {
+        $authHeader = $headers['Authorization'];
+        if (preg_match('/Bearer\s+(.*)$/i', $authHeader, $matches)) {
+            $token = $matches[1];
+            try {
+                $decodedToken = JWT::decode($token, new Key($this->secretKey, 'HS256'));
+                $tokenData = (array) $decodedToken;
+                $this->token = $tokenData;
+                return true;
+            } catch (Exception $e) {
+                return false;
+            }
         }
+    }
+    return false;
+}  
+    public function getJwt()
+    {
+        return $this->token;
     }
 }
