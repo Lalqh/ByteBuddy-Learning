@@ -113,3 +113,81 @@ export class Course {
     }
 
 }
+
+export class UserCourse {
+    constructor(id, title, description) {
+        this.id = id;
+        this.carouselItem = document.createElement('div');
+        this.card = document.createElement('div');
+        this.imgWrapper = document.createElement('div');
+        this.img = document.createElement('img');
+        this.cardBody = document.createElement('div');
+        this.title = document.createElement("h5");
+        this.description = document.createElement('p');
+        this.showMoreButton = document.createElement('a');
+        //Asignar valores
+        this.title.textContent = title;
+        this.description.textContent = description;
+        this.img.src = "";
+        this.showMoreButton.textContent = "Ver mas";
+        this.showMoreButton.href = "/../producto.html?curso_id="
+        //Asignar ids
+        this.carouselItem.setAttribute('course_id', id);
+        this.card.setAttribute('course_id', id);
+        this.imgWrapper.setAttribute('course_id', id);
+        this.cardBody.setAttribute('course_id', id);
+        this.title.setAttribute('course_id', id);
+        this.description.setAttribute("course_id", id);
+        this.showMoreButton.setAttribute('course_id', id);
+        //asignar clases
+        this.carouselItem.classList.add('carousel-item', 'active');
+        this.imgWrapper.classList.add('img-wrapper');
+        this.title.classList.add('card-title');
+        this.description.classList.add('card-text');
+        this.card.classList.add('card', 'text-start');
+        this.cardBody.classList.add('card-body');
+        this.showMoreButton.classList.add('btn', 'btn-primary');
+        //Asignar eventos
+
+        //otros atributos
+
+        this.title.setAttribute('column', 'nombre');
+        //agregar a la columna de cards
+        this.carouselItem.append(this.card);
+        this.card.append(this.imgWrapper);
+        this.imgWrapper.append(this.img);
+        this.card.append(this.cardBody);
+        this.cardBody.append(this.title);
+        this.cardBody.append(this.description);
+        this.cardBody.append(this.showMoreButton);
+
+
+    }
+
+    create() {
+        return this.carouselItem;
+    }
+    setId(id) {
+        this.id = id;
+    }
+    setImage(src) {
+        this.img.src = src;
+    }
+}
+export class listOfUserCourses {
+    constructor(destination) {
+        this.destination = destination;
+    }
+    render(items) {
+        items.forEach(element => {
+            let course = new UserCourse(element.id, element.nombre, element.descripcion);
+            this.destination.appendChild(course.create());
+        });
+    }
+    setDestination(dest) {
+        this.destination = dest;
+    }
+    appendCourse(course) {
+        this.destination.appendChild(course.create())
+    }
+}
