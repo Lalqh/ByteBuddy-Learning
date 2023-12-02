@@ -27,11 +27,14 @@ export class Course {
         this.description = document.createElement('p');
         this.price = document.createElement('p');
         this.deleteButton = document.createElement('button');
+        this.inputFile = document.createElement('input');
         //Asignar valores
         this.title.textContent = title;
         this.description.textContent = description;
         this.price.textContent = price;
         this.deleteButton.textContent = 'Eliminar';
+        this.inputFile.type = 'file';
+        this.inputFile.name = 'imgCourse';
         //Asignar ids
         this.card.setAttribute('course_id', id);
         this.cardBody.setAttribute('course_id', id);
@@ -47,12 +50,14 @@ export class Course {
         this.card.classList.add('card', 'text-start');
         this.cardBody.classList.add('card-body');
         this.price.classList.add('card-text', 'price');
+        this.inputFile.classList.add('form-control');
         this.deleteButton.classList.add('btn', 'btn-danger');
         //Asignar eventos
         this.description.addEventListener('click', () => convertToInput(this.description));
         this.price.addEventListener('click', () => convertToInput(this.price));
         this.title.addEventListener('click', () => convertToInput(this.title));
         this.deleteButton.addEventListener('click', () => this.deleteCourse());
+        this.inputFile.addEventListener('change', () => this.handleFileUpload(this.inputFile));
         //otros atributos
         this.description.setAttribute('column', 'descripcion');
         this.price.setAttribute('column', 'precio');
@@ -63,6 +68,7 @@ export class Course {
         this.cardBody.append(this.title);
         this.cardBody.append(this.description);
         this.cardBody.append(this.price);
+        this.cardBody.append(this.inputFile);
         this.cardBody.append(this.deleteButton);
 
 
@@ -111,9 +117,37 @@ export class Course {
             }
         })
     }
+    handleFileUpload(fileInput) {
+        const selectedFile = fileInput.files[0];
+        let editData = new FormData();
+        let type = 'data:' + selectedFile.type + ';base64,';
+        editData.append('req', 'edit_file');
+        editData.append('imgType', type);
+        editData.append('id', this.id);
+        editData.append('imgCourse', selectedFile);
+        if (selectedFile) {
+            postData('../../models/courses.php', editData)
+                .then((resp) => {
+                    if (resp.code === "ok") {
+                        Swal.fire(
+                            'Editado',
+                            'Imagen subida con éxito',
+                            'success'
+                        )
+                    } else {
+                        Swal.fire({
+                            title: 'Error',
+                            text: resp.message,
+                            icon: 'error',
+                            customClass: 'swal-wide',
+                        })
+                    }
+                })
 
+        }
+
+    }
 }
-
 export class UserCourse {
     constructor(id, title, description) {
         this.id = id;

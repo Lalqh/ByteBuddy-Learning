@@ -55,6 +55,22 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         } else {
             $response = new Response("ok", "Curso eliminado con éxito");
         }
+    } else if ($_POST["req"] === "edit_file") {
+        $crud = new Crud($db);
+        $image = $_FILES["imgCourse"]["name"] ?? '';
+        $imageType = $_POST["imgType"];
+        $tmpPath = $_FILES["imgCourse"]["tmp_name"];
+        $imgData = '';
+        if (!empty($tmpPath)) {
+            $imgData = file_get_contents($tmpPath);
+        }
+        $imgData = base64_encode($imgData);
+        $result = $crud->update('Cursos', 'img_src', $imageType . $imgData, $_POST["id"]);
+        if (!$result) {
+            $response = new Response("error", "Error al editar la imagen" . $result);
+        } else {
+            $response = new Response("ok", "Imagen actualizada con éxito");
+        }
     }
 }
 
