@@ -9,12 +9,6 @@ $db = DB::getInstance()->getConnection();
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if ($_POST["req"] === "create") {
-        $course = new Course([
-            "name" => $_POST["nombreCurso"],
-            "price" => $_POST["precioCurso"],
-            "description" => $_POST["descripcionCurso"],
-            "img_src" => $imageType . $imgData
-        ]);
         $crud = new Crud($db);
         $image = $_FILES["imgCourse"]["name"] ?? '';
         $imageType = $_POST["imgType"];
@@ -24,8 +18,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $imgData = file_get_contents($tmpPath);
         }
         $imgData = base64_encode($imgData);
+        $course = new Course([
+            "name" => $_POST["nombreCurso"],
+            "price" => $_POST["precioCurso"],
+            "description" => $_POST["descripcionCurso"],
+            "img_src" => $imageType . $imgData
+        ]);
         $result = $crud->insert('Cursos', $course->getData());
-
         if (!$result) {
             $response = new Response("error", "Error al crear el curso");
         } else {

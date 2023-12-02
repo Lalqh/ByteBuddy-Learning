@@ -72,19 +72,22 @@ class Course
     private $name;
     private $description;
     private $price;
+    private $img;
 
     public function __construct($courseArray)
     {
         $this->name = $courseArray["name"];
         $this->description = $courseArray["description"];
         $this->price = $courseArray["price"];
+        $this->img = $courseArray["img_src"];
     }
     public function getData()
     {
         return [
             "nombre" => $this->name,
             "descripcion" => $this->description,
-            "precio" => $this->price
+            "precio" => $this->price,
+            "img_src" => $this->img
         ];
     }
 }
