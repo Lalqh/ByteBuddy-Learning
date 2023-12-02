@@ -19,14 +19,7 @@ postData('../../models/courses.php', firstReq)
 eventListeners();
 
 function eventListeners() {
-    // document.addEventListener('DOMContentLoaded', function () {
-    //     validateToken('../../models/Auth/jwtManager.php')
-    //         .then((resp) => {
-    //             if (resp.code === "ok") {
-    //                 console.log(resp.message)
-    //             }
-    //         })
-    // })
+
     document.querySelector("#createCourse").addEventListener("submit", submitForm);
 }
 
@@ -35,6 +28,8 @@ function submitForm(e) {
     const formCreateCourse = document.querySelector("#createCourse");
     const values = new FormData(formCreateCourse);
     values.append('req', 'create');
+    let type = 'data:' + values.get('imgCourse').type + ';base64,';
+    values.append('imgType', type);
     if (!isEmpty(values)) {
         postData('../../models/courses.php', values).
             then((resp) => {

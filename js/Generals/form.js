@@ -19,7 +19,7 @@ export function isEmpty(form) {
 
     for (const [key, value] of formDataArray) {
 
-        if (value.trim() === "") {
+        if (key != "imgCourse" && value.trim() === "") {
             emptyValues = true;
             Swal.fire({
                 icon: "error",
