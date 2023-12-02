@@ -130,7 +130,7 @@ export class UserCourse {
         this.description.textContent = description;
         this.img.src = "";
         this.showMoreButton.textContent = "Ver mas";
-        this.showMoreButton.href = "/../producto.html?curso_id="
+        this.showMoreButton.href = "./producto.html?curso_id=" + this.id;
         //Asignar ids
         this.carouselItem.setAttribute('course_id', id);
         this.card.setAttribute('course_id', id);
@@ -142,6 +142,8 @@ export class UserCourse {
         //asignar clases
         this.carouselItem.classList.add('carousel-item', 'active');
         this.imgWrapper.classList.add('img-wrapper');
+        this.img.width = 200;
+        this.img.classList.add('img-fluid');
         this.title.classList.add('card-title');
         this.description.classList.add('card-text');
         this.card.classList.add('card', 'text-start');
@@ -181,6 +183,7 @@ export class listOfUserCourses {
     render(items) {
         items.forEach(element => {
             let course = new UserCourse(element.id, element.nombre, element.descripcion);
+            course.setImage(element.img_src);
             this.destination.appendChild(course.create());
         });
     }
