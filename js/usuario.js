@@ -1,5 +1,5 @@
 import { postData } from "./Generals/requests.js";
-import { UserCourse, listOfUserCourses } from "./Generals/domClasses.js";
+import { UserCourse, listOfCourses, listOfUserCourses } from "./Generals/domClasses.js";
 let sidebar = document.querySelector(".sidebar");
 let closeBtn = document.querySelector("#btn");
 let searchBtn = document.querySelector(".bx-search");
@@ -9,10 +9,10 @@ closeBtn.addEventListener("click", () => {
   menuBtnChange();//calling the function(optional)
 });
 
-searchBtn.addEventListener("click", () => { // Sidebar open when you click on the search iocn
-  sidebar.classList.toggle("open");
-  menuBtnChange(); //calling the function(optional)
-});
+// searchBtn.addEventListener("click", () => { // Sidebar open when you click on the search iocn
+//   sidebar.classList.toggle("open");
+//   menuBtnChange(); //calling the function(optional)
+// });
 
 // following are the code to change sidebar button(optional)
 function menuBtnChange() {
@@ -48,13 +48,16 @@ if (window.matchMedia("(min-width:576px)").matches) {
 }
 const firstReq = new FormData();
 firstReq.append('req', 'get_courses');
-const grid = document.querySelector('#carousel-inner');
+const carousel = document.querySelector('#carousel-inner');
+const grid = document.querySelector('#grid-courses');
 
 postData('../../models/courses.php', firstReq)
   .then((resp) => {
     if (resp.code === "ok") {
-      let courses = new listOfUserCourses(grid);
-      console.log(resp.data)
+      let gridCourses = new listOfCourses(grid);
+      let courses = new listOfUserCourses(carousel);
+      console.log(resp.data);
+      gridCourses.renderInUsers(resp.data);
       courses.render(resp.data);
     }
   })

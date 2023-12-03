@@ -1,0 +1,24 @@
+#imgPerfil,#imgLogo{
+    width: 65px;
+    height: 65px;
+ 
+  }
+  footer{
+    background-color: #11101d;
+  }
+  nav{
+    background-color: #11101d;
+  }
+  #xd{
+    background-color: #11101d;
+  }
+table{
+  border: 1px solid black;
+}
+tr{
+  border: 2px solid black;
+ 
+}
+td{
+  border: 2px solid black;
+}

@@ -1,0 +1,17 @@
+    /* Estilos personalizados para las estrellas */
+    .rating-container {
+        display: inline-block;
+        position: relative;
+    }
+
+    .rating-star {
+        font-size: 2rem;
+        color: #ffd700;
+        /* Color de las estrellas llenas */
+    }
+
+    .rating-star-empty {
+        font-size: 2rem;
+        color: #ccc;
+        /* Color de las estrellas vacías */
+    }
