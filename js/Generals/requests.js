@@ -11,7 +11,6 @@ export const postData = (url, data) => {
         Authorization: `Bearer ${token}`,
       },
       body: data,
-      
     })
       .then(async (response) => {
         const { code, message, data } = await response.json();

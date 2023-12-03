@@ -3,7 +3,7 @@
 export const reditect = (typeUser) => {
   switch (typeUser) {
     case 1:
-      window.location.href = "./views/Usuario/index.html";
+      window.location.href = "./Usuario/index.html";
       break;
     case 2:
       window.location.href = "./Maestro/index.html";
@@ -52,4 +52,9 @@ const reditectTo = (typeUser) => {
       window.location.href = "../Admin/index.html";
       break;
   }
+}
+
+export const closeSession = () =>{
+  localStorage.clear();
+  window.location.href = "../login.html"
 }

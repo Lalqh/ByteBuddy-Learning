@@ -28,7 +28,6 @@ function validateData(e) {
   if (!isEmpty(values)) {
     if (validateEmail(values)) {
       postData("../models/login.php", values).then((resp) => {
-        console.log(resp);
         const type = resp.code == "ok" ? "success" : "error";
         Swal.fire({
           icon: type,
@@ -36,7 +35,6 @@ function validateData(e) {
         }).then(async (result) => {
           if (result.isConfirmed) {
             if (resp.code == "ok") {
-              console.log(resp)
               saveData(resp.data.token, resp.data.typeUser);
               reditect(parseInt(resp.data.typeUser));
             }

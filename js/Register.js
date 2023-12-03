@@ -17,7 +17,6 @@ function validateData(e) {
     if (validateEmail(values)) {
       postData('../models/register.php', values).
         then((resp) => {
-          console.log(resp)
           const type = resp.code == "ok" ? "success" : "error"
           Swal.fire({
             icon: type,

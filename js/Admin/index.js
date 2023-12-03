@@ -1,9 +1,13 @@
 import { hideLoader, showLoader } from "../Generals/animation.js";
-import { checkTypeUser } from "../Generals/authManger.js";
+import { checkTypeUser, closeSession } from "../Generals/authManger.js";
 import { postData } from "../Generals/requests.js";
-import { Users, listOfUsers } from "./doom.js";
+import { listOfUsers } from "./doom.js";
 
 checkTypeUser();
+
+const closeSessionLink = document.getElementById('sesion');
+closeSessionLink.addEventListener('click', closeSession);
+
 
 const firstReq = new FormData();
 firstReq.append('req', 'get_users');

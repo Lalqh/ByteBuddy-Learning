@@ -31,4 +31,16 @@ class Helper
             mt_rand(0, 0xffff)
         );
     }
+    public function generateNewPassoword($longitud = 10)
+    {
+        $caracteresPermitidos = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $longitudCaracteres = strlen($caracteresPermitidos);
+        $cadenaAleatoria = '';
+        for ($i = 0; $i < $longitud; $i++) {
+            $indiceAleatorio = random_int(0, $longitudCaracteres - 1);
+            $caracterAleatorio = $caracteresPermitidos[$indiceAleatorio];
+            $cadenaAleatoria .= $caracterAleatorio;
+        }
+        return $cadenaAleatoria;
+    }
 }

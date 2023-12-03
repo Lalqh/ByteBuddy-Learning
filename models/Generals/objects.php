@@ -38,6 +38,13 @@ class User
         return $insertData;
     }
 
+    public function updatePassowrd($idUser)
+    {
+        $crud = new Crud($this->dbConnection);
+        $updateData = $crud->update('usuarios', "contrasena", $this->password, $idUser);
+        return $updateData;
+    }
+
     public function exists()
     {
         $crud = new Crud($this->dbConnection);

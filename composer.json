@@ -1,5 +1,12 @@
 {
-    "require": {
-        "firebase/php-jwt": "^6.9"
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/elasticemail/elasticemail-php.git"
     }
+  ],
+  "require": {
+    "firebase/php-jwt": "^6.9",
+    "elasticemail/elasticemail-php": "*@dev"
+  }
 }
