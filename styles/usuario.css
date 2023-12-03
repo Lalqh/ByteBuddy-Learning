@@ -306,4 +306,7 @@ footer{
 #siguiente,#previo{
   height: 86%;
 }
+#salir{
+  background-color: 0;
+}
 
