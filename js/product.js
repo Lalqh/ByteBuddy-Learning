@@ -30,8 +30,8 @@ postData('../../models/courses.php', data)
             } else {
                 img.src = resp.data[0].img_src;
                 title.innerHTML = resp.data[0].nombre;
-                price.innerHTML = resp.data[0].precio;
-                description.innerHTML = resp.data[0].descripcion;
+                price.innerHTML = "Precio : $" + resp.data[0].precio;
+                description.innerHTML = "Descripcion: " + resp.data[0].descripcion;
                 fillStars(resp.data[0].estrellasCurso)
             }
 
