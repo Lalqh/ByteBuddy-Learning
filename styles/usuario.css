@@ -250,9 +250,9 @@
   }
 }
 /*Estilo home*/
-#imgPerfil,#imgLogo{
-  width: 65px;
-  height: 65px;
+#imgLogo{
+  width: 75px;
+  height: 75px;
 
 }
 footer{
