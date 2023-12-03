@@ -17,6 +17,15 @@ export class listOfCourses {
             course.setImage(element.img_src);
             course.cardBody.removeChild(course.deleteButton);
             course.cardBody.removeChild(course.inputFile);
+            course.price.setAttribute('is_view_user', 1);
+            course.title.setAttribute('is_view_user', 1);
+            course.description.setAttribute('is_view_user', 1);
+            let buyBtn = document.createElement('a');
+            buyBtn.textContent = 'Comprar';
+            buyBtn.className = "btn btn-primary";
+            buyBtn.setAttribute('course_id', element.id);
+            buyBtn.href = "./producto.html?curso_id=" + buyBtn.getAttribute('course_id');
+            course.cardBody.appendChild(buyBtn);
             this.destination.appendChild(course.create());
         });
     }
