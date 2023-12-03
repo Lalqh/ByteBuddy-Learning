@@ -7,6 +7,16 @@ export class listOfCourses {
     render(items) {
         items.forEach(element => {
             let course = new Course(element.id, element.nombre, element.descripcion, element.precio);
+            course.setImage(element.img_src);
+            this.destination.appendChild(course.create());
+        });
+    }
+    renderInUsers(items) {
+        items.forEach(element => {
+            let course = new Course(element.id, element.nombre, element.descripcion, element.precio);
+            course.setImage(element.img_src);
+            course.cardBody.removeChild(course.deleteButton);
+            course.cardBody.removeChild(course.inputFile);
             this.destination.appendChild(course.create());
         });
     }
@@ -24,6 +34,8 @@ export class Course {
         this.col = document.createElement('div');
         this.card = document.createElement('div');
         this.cardBody = document.createElement('div');
+        this.imgWrapper = document.createElement('div');
+        this.img = document.createElement('img');
         this.description = document.createElement('p');
         this.price = document.createElement('p');
         this.deleteButton = document.createElement('button');
@@ -49,8 +61,9 @@ export class Course {
         this.col.classList.add('col', 'mb-3');
         this.card.classList.add('card', 'text-start');
         this.cardBody.classList.add('card-body');
+        this.imgWrapper.classList.add('img-wrapper', 'text-center');
         this.price.classList.add('card-text', 'price');
-        this.inputFile.classList.add('form-control');
+        this.inputFile.classList.add('form-control', 'mb-3');
         this.deleteButton.classList.add('btn', 'btn-danger');
         //Asignar eventos
         this.description.addEventListener('click', () => convertToInput(this.description));
@@ -62,10 +75,13 @@ export class Course {
         this.description.setAttribute('column', 'descripcion');
         this.price.setAttribute('column', 'precio');
         this.title.setAttribute('column', 'nombre');
+        this.img.width = 200;
         //agregar a la columna de cards
         this.col.append(this.card);
         this.card.append(this.cardBody);
+        this.imgWrapper.append(this.img);
         this.cardBody.append(this.title);
+        this.cardBody.append(this.imgWrapper);
         this.cardBody.append(this.description);
         this.cardBody.append(this.price);
         this.cardBody.append(this.inputFile);
@@ -80,6 +96,9 @@ export class Course {
     }
     getNode() {
         return this.col;
+    }
+    setImage(src) {
+        this.img.src = src;
     }
     deleteCourse() {
         Swal.fire({
