@@ -47,6 +47,8 @@ function submitForm(e) {
                             values.get('nombreCurso'),
                             values.get('descripcionCurso'),
                             values.get('precioCurso'));
+                        const imgUrl = URL.createObjectURL(values.get('imgCourse'));
+                        newCourse.setImage(imgUrl);
                         grid.appendChild(newCourse.create());
                     }
                 })
