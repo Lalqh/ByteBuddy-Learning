@@ -71,6 +71,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         } else {
             $response = new Response("ok", "Imagen actualizada con éxito");
         }
+    } else if ($_POST["req"] === "get_course") {
+        $crud = new Crud($db);
+        $result = $crud->select("*", "Cursos", "id =" . $_POST['course_id']);
+        if (!$result) {
+            $response = new Response('error', 'Error al obtener el curso' . $result);
+        } else {
+            $response = new Response('ok', 'Curso obtenido con éxito', DB::setQueryToArray($result));
+        }
     }
 }
 
