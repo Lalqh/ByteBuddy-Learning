@@ -65,7 +65,7 @@ export class Course {
         //Asignar valores
         this.title.textContent = title;
         this.description.textContent = description;
-        this.price.textContent = price;
+        this.price.textContent = 'Precio: $' + price;
         this.deleteButton.textContent = 'Eliminar';
         this.inputFile.type = 'file';
         this.inputFile.name = 'imgCourse';
@@ -175,6 +175,9 @@ export class Course {
                             'Imagen subida con éxito',
                             'success'
                         )
+                        setTimeout(function () {
+                            location.reload();
+                        }, 1500)
                     } else {
                         Swal.fire({
                             title: 'Error',

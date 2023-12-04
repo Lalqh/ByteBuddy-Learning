@@ -62,6 +62,15 @@ class User
         }
     }
 
+    public function userCrate()
+    {
+        $crud = new Crud($this->dbConnection);
+        $email = $crud->getDbConnection()->real_escape_string($this->email);
+        $result = $crud->select('correo', 'usuarios', "correo = '$email'");
+
+
+    }
+
     public function login($passwordInDb, $passwordFrom, $dataUser)
     {
         if (password_verify($passwordFrom, $passwordInDb)) {

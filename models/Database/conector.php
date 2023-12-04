@@ -4,11 +4,15 @@ class Db
     private static $instance;
     private $connection;
 
-    private $host = '64.20.36.19';
-    private $username = 'u32759_0pF4s7NULd';
-    private $password = 'Qbb5u8eGuA9RK2w5Vw+5UbRY';
-    private $database = 's32759_ByteBuddyLearning';
+    // private $host = '64.20.36.19';
+    // private $username = 'u32759_0pF4s7NULd';
+    // private $password = 'Qbb5u8eGuA9RK2w5Vw+5UbRY';
+    // private $database = 's32759_ByteBuddyLearning';
 
+    private $host = 'localhost';
+    private $username = 'root';
+    private $password = 'Admin1*';
+    private $database = 's32759_bytebuddylearning';
 
     // Constructor privado para prevenir instanciación directa
     private function __construct()

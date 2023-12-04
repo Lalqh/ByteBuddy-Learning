@@ -81,6 +81,7 @@ export function convertToInput(element) {
                             }
                         });
                         input.parentNode.replaceChild(copyNode, input);
+                        location.reload();
                     } else {
                         copyNode.innerHTML = input.defaultValue;
                         Swal.fire("Cancelado!", "Tu cambio no se ha guardado.", "error");
