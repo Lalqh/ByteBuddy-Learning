@@ -8,7 +8,7 @@ img {
 }
 .navigation_bar {
   border: 2px solid rgba(255, 255, 255, 1);
-  border-radius: 30px;
+  border-radius: 5px;
   backdrop-filter: blur(4px);
   z-index: 1;
 }
