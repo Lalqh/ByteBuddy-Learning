@@ -87,7 +87,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }else if($_POST["req"] === "buy"){
             // aun no esta listo
             $crud = new Crud($db);
-            $result = $crud->insert("", "", $_POST[""]);
+            $infoUser = $jwt->getJwt();
+            $data = ["idUsuario" => $infoUser["id"], "idCurso"=> $_POST['course_id']];
+            $result = $crud->insert("RelCursosUsuarios", $data);
+            if ($result) {
+                $response = new Response('ok', 'Acabas de adqurir el curso');
+            }else{
+                $response = new Response('error', 'Ocurrio un error a el obtener el curso');
+            }
         }
     }else{
         $CorrectToken = false;

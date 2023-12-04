@@ -8,6 +8,23 @@ closeSessionLink.addEventListener("click", closeSession);
 const restPassword = document.getElementById("pas");
 restPassword.addEventListener("click", restedPassoword);
 
+const comprarCurso = () => {
+    const data = new FormData();
+    data.append("course_id", urlSearchParams.get("curso_id"));
+    data.append("req", "buy");
+    postData("../../models/courses.php", data).then((resp) => {
+      if (resp.code === "ok") {
+          const type = resp.code == "ok" ? "success" : "error";
+          Swal.fire({
+            icon: type,
+            title: resp.message,
+          }).then(() => {
+            window.location.href = "./index.html"
+          });
+      }
+    });
+  }; 
+
 const comprar = document.getElementById("comprar");
 comprar.addEventListener("click", comprarCurso);
 
@@ -67,13 +84,3 @@ function fillStars(cal) {
     ratingContainer.appendChild(star);
   }
 }
-
-const comprarCurso = () => {
-  const data = new FormData();
-  data.append("course_id", urlSearchParams.get("curso_id"));
-  data.append("req", "buy");
-  postData("../../models/courses.php", data).then((resp) => {
-    if (resp.code === "ok") {
-    }
-  });
-};

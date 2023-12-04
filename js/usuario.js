@@ -44,8 +44,6 @@ postData('../../models/courses.php', firstReq)
   .then((resp) => {
     if (resp.code === "ok") {
       let gridCourses = new listOfCourses(grid);
-      console.log(resp.data);
       gridCourses.renderInUsers(resp.data);
-      courses.render(resp.data);
     }
   })
