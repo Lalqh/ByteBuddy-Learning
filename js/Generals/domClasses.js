@@ -1,5 +1,6 @@
 import { convertToInput } from './functions.js';
 import { postData } from './requests.js';
+
 export class listOfCourses {
     constructor(destination) {
         this.destination = destination;
@@ -236,23 +237,5 @@ export class UserCourse {
     }
     setImage(src) {
         this.img.src = src;
-    }
-}
-export class listOfUserCourses {
-    constructor(destination) {
-        this.destination = destination;
-    }
-    render(items) {
-        items.forEach(element => {
-            let course = new UserCourse(element.id, element.nombre, element.descripcion);
-            course.setImage(element.img_src);
-            this.destination.appendChild(course.create());
-        });
-    }
-    setDestination(dest) {
-        this.destination = dest;
-    }
-    appendCourse(course) {
-        this.destination.appendChild(course.create())
     }
 }

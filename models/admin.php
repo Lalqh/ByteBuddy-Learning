@@ -46,6 +46,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             } else {
                 $response = new Response("error", "Ocurrio un error a el actualizar el tipo de usuario");
             }
+        } else if ($_POST["req"] === "change_password") {
+            $dataUser = $jwt->getJwt();
+            $user = new User("", $_POST["password"]);
+            if ($user->updatePassowrd($dataUser["id"])) {
+                $response = new Response("ok", "La contraseña se actualizo con exito");
+            } else {
+                $response = new Response("error", "Ocurrio un error a el actualiazr la contraseña");
+            }
         }
     } else {
         $CorrectToken = false;
