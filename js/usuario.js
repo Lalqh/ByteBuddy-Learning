@@ -37,13 +37,23 @@ restPassword.addEventListener('click', restedPassoword);
 
 const firstReq = new FormData();
 firstReq.append('req', 'get_courses');
-const carousel = document.querySelector('#carousel-inner');
 const grid = document.querySelector('#grid-courses');
-
+const myCourses = document.querySelector('#curseUser');
 postData('../../models/courses.php', firstReq)
   .then((resp) => {
     if (resp.code === "ok") {
       let gridCourses = new listOfCourses(grid);
+
       gridCourses.renderInUsers(resp.data);
+
+    }
+  })
+const myReqCourses = new FormData();
+myReqCourses.append('req', 'my_courses');
+postData('../../models/courses.php', myReqCourses)
+  .then((resp) => {
+    if (resp.code === "ok") {
+      let myCoursesGrid = new listOfCourses(myCourses);
+      myCoursesGrid.renderMyCourses(resp.data);
     }
   })

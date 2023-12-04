@@ -30,6 +30,18 @@ export class listOfCourses {
             this.destination.appendChild(course.create());
         });
     }
+    renderMyCourses(items) {
+        items.forEach(element => {
+            let course = new Course(element.id, element.nombre, element.descripcion, '');
+            course.setImage(element.img_src);
+            course.cardBody.removeChild(course.deleteButton);
+            course.cardBody.removeChild(course.inputFile);
+            course.cardBody.removeChild(course.price);
+            course.title.setAttribute('is_view_user', 1);
+            course.description.setAttribute('is_view_user', 1);
+            this.destination.appendChild(course.create());
+        });
+    }
     setDestination(dest) {
         this.destination = dest;
     }

@@ -12,7 +12,7 @@ $CorrectToken = true;
 
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    if($jwt->verifyJwt()){
+    if ($jwt->verifyJwt()) {
         if ($_POST["req"] === "create") {
             $crud = new Crud($db);
             $image = $_FILES["imgCourse"]["name"] ?? '';
@@ -84,19 +84,29 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             } else {
                 $response = new Response('ok', 'Curso obtenido con éxito', DB::setQueryToArray($result));
             }
-        }else if($_POST["req"] === "buy"){
+        } else if ($_POST["req"] === "buy") {
             // aun no esta listo
             $crud = new Crud($db);
             $infoUser = $jwt->getJwt();
-            $data = ["idUsuario" => $infoUser["id"], "idCurso"=> $_POST['course_id']];
+            $data = ["idUsuario" => $infoUser["id"], "idCurso" => $_POST['course_id']];
             $result = $crud->insert("RelCursosUsuarios", $data);
             if ($result) {
                 $response = new Response('ok', 'Acabas de adqurir el curso');
-            }else{
+            } else {
                 $response = new Response('error', 'Ocurrio un error a el obtener el curso');
             }
+        } else if ($_POST["req"] === "my_courses") {
+            $crud = new Crud($db);
+            $infoUser = $jwt->getJwt();
+            $data = $infoUser["id"];
+            $result = $crud->select('c.id, c.nombre, c.descripcion, c.img_src', 'Cursos as c INNER JOIN RelCursosUsuarios  as r ON c.id = r.idCurso', "idUsuario = '$data'");
+            if (!$result) {
+                $response = new Response('error', 'Error al obtener tus cursos');
+            } else {
+                $response = new Response('ok', 'Cursos obtenidos con exito', DB::setQueryToArray($result));
+            }
         }
-    }else{
+    } else {
         $CorrectToken = false;
         $response = new Response("error", "Con el token");
     }
