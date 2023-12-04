@@ -52,7 +52,6 @@ class User
 
         try {
             $result = $crud->select('COUNT(*) as count, contrasena, id, idTipoUsuario', 'usuarios', "correo = '$email'");
-
             if ($result === false) {
                 throw new Exception("Error en la consulta: " . $crud->dbConnection->error);
             }
