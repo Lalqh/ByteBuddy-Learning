@@ -3,7 +3,7 @@ class Db
 {
     private static $instance;
     private $connection;
-
+ 
     // private $host = '64.20.36.19';
     // private $username = 'u32759_0pF4s7NULd';
     // private $password = 'Qbb5u8eGuA9RK2w5Vw+5UbRY';
@@ -11,8 +11,8 @@ class Db
 
     private $host = 'localhost';
     private $username = 'root';
-    private $password = 'Admin1*';
-    private $database = 's32759_bytebuddylearning';
+    private $password = '';
+    private $database = 'bytebuddy';
 
     // Constructor privado para prevenir instanciación directa
     private function __construct()
