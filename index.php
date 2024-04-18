@@ -36,12 +36,14 @@
           <li class="nav-item">
             <a class="nav-link" href="views/Register.html">Registrarse</a>
           </li>
-          <li class="d-flex align-items-end justify-content-end nav-item dropdown" style="margin-left: auto;">
-            <a class="nav-link btn dropdown-toggle" href="#" id="carritoIcono" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        </ul>
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="carritoIcono" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <img style="width: 20px; height: 20px;" src="assets/images/carrito-de-compras.png" alt="Carrito">
               <span id="contadorCarrito" class="badge badge-pill badge-danger">0</span>
             </a>
-            <div class="dropdown-menu" aria-labelledby="carritoIcono">
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="carritoIcono">
               <div id="carritoProductos" class="dropdown-item">
                 <!-- Productos agregados al carrito -->
               </div>
@@ -76,8 +78,8 @@
               <div class="card-body">
                 <h5 class="card-title"><?php echo $producto['nombre']; ?></h5>
                 <p class="card-text"><?php echo $producto['descripcion']; ?></p>
-                <p class="card-text">$<?php echo $producto['precio']; ?></p>
-                <button type="button" class="btn btn-primary agregar-carrito" data-id="<?php echo $producto['id']; ?>">Comprar</button>
+                <p class="card-text precio">$<?php echo $producto['precio']; ?></p>
+                <button type="button" class="btn btn-primary agregar-carrito" data-id="<?php echo $producto['id']; ?>" data-nombre="<?php echo $producto['nombre']; ?>" data-descripcion="<?php echo $producto['descripcion']; ?>" data-precio="<?php echo $producto['precio']; ?>" data-imagen="<?php echo $producto['img_src']; ?>">Comprar</button>
               </div>
             </div>
           </div>
@@ -97,22 +99,46 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
   <script>
-    let cantidadCarrito = 0;
+    let carrito = [];
+
     const contadorCarrito = document.getElementById('contadorCarrito');
     const carritoProductos = document.getElementById('carritoProductos');
 
     function agregarAlCarrito(event) {
       event.stopPropagation();
       const idProducto = event.target.getAttribute('data-id');
-      cantidadCarrito++;
-      contadorCarrito.innerText = cantidadCarrito;
 
-      const nombreProducto = event.target.parentNode.querySelector('.card-title').innerText;
+      const productoExistente = carrito.find(producto => producto.id === idProducto);
+      if (productoExistente) {
+        return;
+      }
+
+     
+      const nombreProducto = event.target.getAttribute('data-nombre');
+      const descripcionProducto = event.target.getAttribute('data-descripcion');
+      const precioProducto = event.target.getAttribute('data-precio');
+      const imagenProducto = event.target.getAttribute('data-imagen');
+
+      carrito.push({
+        id: idProducto,
+        nombre: nombreProducto,
+        descripcion: descripcionProducto,
+        precio: precioProducto,
+        imagen: imagenProducto
+      });
+
+      // de puro react xd
       const nuevoProducto = document.createElement('a');
       nuevoProducto.classList.add('dropdown-item');
       nuevoProducto.href = '#';
       nuevoProducto.innerText = nombreProducto;
-      carritoProductos.insertBefore(nuevoProducto, carritoProductos.childNodes[0]); // Insertar el nuevo producto al inicio del carrito
+      carritoProductos.appendChild(nuevoProducto); 
+
+      actualizarContadorCarrito();
+    }
+
+    function actualizarContadorCarrito() {
+      contadorCarrito.innerText = carrito.length;
     }
 
     const botonesComprar = document.querySelectorAll('.agregar-carrito');
