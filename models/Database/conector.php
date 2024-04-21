@@ -14,11 +14,14 @@ class Db
     private $password = '';
     private $database = 'bytebuddy';
 
+
     // Constructor privado para prevenir instanciación directa
     private function __construct()
     {
+        //puerto 3306
         $this->connection = new mysqli($this->host, $this->username, $this->password, $this->database);
-
+        //puerto 3307
+        //$this->connection = new mysqli($this->host, $this->username, $this->password, $this->database, 3307);
         if ($this->connection->connect_error) {
             die("Error de conexión: " . $this->connection->connect_error);
         }

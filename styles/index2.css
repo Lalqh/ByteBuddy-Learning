@@ -1,0 +1,50 @@
+:root {
+  --Opc_Color_1: white;
+  --Opc_Color_2: orangered;
+}
+
+img {
+  width: 120px;
+  height: 80px;
+}
+.navigation_bar {
+  border-radius: 5px;
+  z-index: 1;
+  background-color: #1d1b31;
+}
+* {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+.nav-link {
+  color: var(--Opc_Color_1);
+  font-size: 25px;
+}
+.nav-link:hover {
+  color: var(--Opc_Color_2);
+}
+.Background_Index {
+  position: fixed;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  top: 0;
+  left: 0;
+}
+#demo {
+  position: relative;
+}
+.container-vision,
+.container-mission,
+.container-about-us,
+.container-location {
+  position: relative;
+  border: 2px solid rgba(255, 255, 255, 1);
+  color: var(--Opc_Color_1);
+  border-radius: 30px;
+  backdrop-filter: blur(4px);
+  z-index: 1;
+  text-align: center;
+  margin-top: 50px;
+}

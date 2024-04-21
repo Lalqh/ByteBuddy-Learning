@@ -1,90 +1,31 @@
-:root {
-  --Opc_Color_1: white;
-  --Opc_Color_2: orangered;
+.navbar-brand img {
+  width: 100px;
+  height: auto;
 }
-img {
-  width: 120px;
-  height: 80px;
+.navbar-custom {
+  background-color: #1d1b31;
 }
-.navigation_bar {
-  border: 2px solid rgba(255, 255, 255, 1);
-  border-radius: 5px;
-  backdrop-filter: blur(4px);
-  z-index: 1;
+.footer-custom {
+  background-color: #1d1b31;
+  color: #fff;
 }
-* {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+#carritoIcono img {
+  filter: brightness(0) invert(1);
 }
-.nav-link {
-  color: var(--Opc_Color_1);
+.navbar-custom .navbar-nav .nav-link {
   font-size: 25px;
+  transition: color 0.3s;
+  color: #fff;
 }
-.nav-link:hover {
-  color: var(--Opc_Color_2);
-}
-.Background_Index {
-  position: fixed;
-  width: auto;
-  height: auto;
-  z-index: 0;
-}
-#demo {
-  position: relative;
-}
-.carousel-inner {
-  width: 20%;
-  margin: -20px auto 0;
-}
-.carousel-inner img {
-  width: 100%;
-  height: auto;
-  object-fit: contain;
-  object-position: center;
-}
-.carousel-caption {
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  text-align: center;
-  width: 80%;
-  box-sizing: border-box;
-}
-.carousel-caption .slider-title {
-  font-size: 2em;
-  margin-bottom: 10px;
-}
-.carousel-caption .slider-description {
-  font-size: 1em;
-  line-height: 1.2;
-  margin-bottom: 1;
+.navbar-custom .navbar-nav .nav-link:hover {
+  color: orangered;
 }
 @media (max-width: 768px) {
-  .carousel-caption {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    transform: none;
-    margin: 0;
-    padding: 15px;
-    width: 100%;
+  .navbar-brand {
+    font-size: 18px;
   }
-}
-.carousel-indicators {
-  bottom: -40px;
-}
-.container-vision,
-.container-mission,
-.container-about-us,
-.container-location {
-  position: relative;
-  border: 2px solid rgba(255, 255, 255, 1);
-  color: var(--Opc_Color_1);
-  border-radius: 30px;
-  backdrop-filter: blur(4px);
-  z-index: 1;
-  text-align: center;
-  margin-top: 50px;
+
+  .nav-link {
+    font-size: 14px;
+  }
 }

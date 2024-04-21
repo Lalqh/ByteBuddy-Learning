@@ -6,28 +6,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ByteBuddy-Learning</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <style>
-    @media (max-width: 768px) {
-      .navbar-brand {
-        font-size: 18px;
-      }
-
-      .nav-link {
-        font-size: 14px;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="styles/index.css">
 </head>
 
 <body>
-
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <nav class="navbar navbar-expand-lg navbar-light navbar-custom">
     <div class="container">
-      <a class="navbar-brand" href="#">logo</a>
+      <a class="navbar-brand" href="../ByteBuddy-Learning/index2.html"><img src="../ByteBuddy-Learning/assets/images/Logo ByteBuddy Learning.png" alt=""></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
@@ -90,9 +78,30 @@
     </div>
   </div>
 
-  <footer class="bg-light text-center py-4">
-    <p>© 2024 ByteBuddy-Learning. Todos los derechos reservados.</p>
-  </footer>
+  <footer class="text-black mt-5 footer-custom">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <h4>ByteBuddy Learning</h4>
+            <p>
+              Somos una plataforma global de educación en tecnología,
+              comprometida con la excelencia en la enseñanza y la formación de
+              profesionales del futuro.
+            </p>
+          </div>
+          <div class="col-md-6">
+            <h4>Contacto</h4>
+            <p>
+              Dirección: C. Nueva Escocia 1885, 44630 Guadalajara, Jalisco
+              <br />
+              Teléfono: +52 33 1440 8792
+              <br />
+              Correo Electrónico: soporte@ByteBuddy.mx
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
 
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
@@ -112,8 +121,7 @@
       if (productoExistente) {
         return;
       }
-
-     
+    
       const nombreProducto = event.target.getAttribute('data-nombre');
       const descripcionProducto = event.target.getAttribute('data-descripcion');
       const precioProducto = event.target.getAttribute('data-precio');
