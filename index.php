@@ -108,52 +108,66 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
   <script>
-    let carrito = [];
+  let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
 
-    const contadorCarrito = document.getElementById('contadorCarrito');
-    const carritoProductos = document.getElementById('carritoProductos');
+  const contadorCarrito = document.getElementById('contadorCarrito');
+  const carritoProductos = document.getElementById('carritoProductos');
 
-    function agregarAlCarrito(event) {
-      event.stopPropagation();
-      const idProducto = event.target.getAttribute('data-id');
+  function agregarAlCarrito(event) {
+    event.stopPropagation();
+    const idProducto = event.target.getAttribute('data-id');
 
-      const productoExistente = carrito.find(producto => producto.id === idProducto);
-      if (productoExistente) {
-        return;
-      }
-    
-      const nombreProducto = event.target.getAttribute('data-nombre');
-      const descripcionProducto = event.target.getAttribute('data-descripcion');
-      const precioProducto = event.target.getAttribute('data-precio');
-      const imagenProducto = event.target.getAttribute('data-imagen');
+    const productoExistente = carrito.find(producto => producto.id === idProducto);
+    if (productoExistente) {
+      return;
+    }
 
-      carrito.push({
-        id: idProducto,
-        nombre: nombreProducto,
-        descripcion: descripcionProducto,
-        precio: precioProducto,
-        imagen: imagenProducto
-      });
+    const nombreProducto = event.target.getAttribute('data-nombre');
+    const descripcionProducto = event.target.getAttribute('data-descripcion');
+    const precioProducto = event.target.getAttribute('data-precio');
+    const imagenProducto = event.target.getAttribute('data-imagen');
 
-      // de puro react xd
+    carrito.push({
+      id: idProducto,
+      nombre: nombreProducto,
+      descripcion: descripcionProducto,
+      precio: precioProducto,
+      imagen: imagenProducto
+    });
+
+    localStorage.setItem('carrito', JSON.stringify(carrito));
+
+    const nuevoProducto = document.createElement('a');
+    nuevoProducto.classList.add('dropdown-item');
+    nuevoProducto.href = '#';
+    nuevoProducto.innerText = nombreProducto;
+    carritoProductos.appendChild(nuevoProducto);
+
+    actualizarContadorCarrito();
+  }
+
+  function actualizarContadorCarrito() {
+    contadorCarrito.innerText = carrito.length;
+  }
+
+  const botonesComprar = document.querySelectorAll('.agregar-carrito');
+  botonesComprar.forEach(boton => {
+    boton.addEventListener('click', agregarAlCarrito);
+  });
+
+  // Cargar productos del localStorage al cargar la página
+  window.addEventListener('DOMContentLoaded', () => {
+    actualizarContadorCarrito();
+    carrito.forEach(producto => {
       const nuevoProducto = document.createElement('a');
       nuevoProducto.classList.add('dropdown-item');
       nuevoProducto.href = '#';
-      nuevoProducto.innerText = nombreProducto;
-      carritoProductos.appendChild(nuevoProducto); 
-
-      actualizarContadorCarrito();
-    }
-
-    function actualizarContadorCarrito() {
-      contadorCarrito.innerText = carrito.length;
-    }
-
-    const botonesComprar = document.querySelectorAll('.agregar-carrito');
-    botonesComprar.forEach(boton => {
-      boton.addEventListener('click', agregarAlCarrito);
+      nuevoProducto.innerText = producto.nombre;
+      carritoProductos.appendChild(nuevoProducto);
     });
-  </script>
+  });
+</script>
+
 
 
 </body>
