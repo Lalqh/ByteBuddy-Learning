@@ -15,19 +15,18 @@ function validateData(e) {
 
   if (!isEmpty(values)) {
     if (validateEmail(values)) {
-      postData('../models/register.php', values).
-        then((resp) => {
-          const type = resp.code == "ok" ? "success" : "error"
-          Swal.fire({
-            icon: type,
-            title: type,
-            text: resp.message
-          }).then((result) => {
-            if (result.isConfirmed) {
-              cleanForm();
-            }
-          })
+      postData("../models/register.php", values).then((resp) => {
+        const type = resp.code == "ok" ? "success" : "error";
+        Swal.fire({
+          icon: type,
+          title: type,
+          text: resp.message,
+        }).then((result) => {
+          if (result.isConfirmed) {
+            cleanForm();
+          }
         });
+      });
     }
   }
 }
