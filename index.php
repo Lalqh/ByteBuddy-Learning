@@ -43,7 +43,7 @@
                     document.getElementById('loginLink').innerText = response.data[0].nombre;
                     document.getElementById('loginLink').href = 'views/Usuario/index.html';
                     document.getElementById('registerLink').innerText = 'Ir a mi perfil';
-                    document.getElementById('registerLink').href = '#'; 
+                    document.getElementById('registerLink').href = 'views/Usuario/index.html'; 
 
                     document.getElementById('logoutLink').style.display = 'block';
 
