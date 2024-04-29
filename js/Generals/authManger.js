@@ -3,7 +3,7 @@
 export const reditect = (typeUser) => {
   switch (typeUser) {
     case 1:
-      window.location.href = "./Usuario/index.html";
+      window.location.href = "../index.php";
       break;
     case 2:
       window.location.href = "./Maestro/index.html";
@@ -17,7 +17,6 @@ export const reditect = (typeUser) => {
 export const saveData = (jwt, typeUser) => {
   localStorage.setItem("JWT", jwt);
   localStorage.setItem("type", typeUser);
-  console.log(jwt)
 };
 
 export const checkTypeUser = () => {
