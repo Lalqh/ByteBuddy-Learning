@@ -19,6 +19,7 @@ class plantillas
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
+            background-color: #0879b9;
         }
         .container {
             width: 80%;
@@ -57,8 +58,10 @@ class plantillas
 <body>
     <div class="container">
         <div class="header">
+        <br/><br/>
             <div class="title">Recibo de Compra</div>
             <div class="subtitle">Detalles de la compra:</div>
+            <h1>¡Gracias por tu compra!</h1>
         </div>';
         return $html;
     }

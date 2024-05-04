@@ -104,23 +104,22 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         $response = new Response('error', 'Ocurrio un error a el obtener el curso');
                     }
                 }
-
                 $html = $plantilla->getPlantillaGeneral();
                 foreach ($array as $curso) {
-                    $html .= '<div class="item">
-                                <div class="name">Curso:</div>
-                                <div>' . $curso['nombre'] . '</div>
-                            </div>
-                            <div class="item">
-                                <div class="name">Descripción:</div>
-                                <div>' . $curso['descripcion'] . '</div>
-                            </div>
-                            <div class="item">
-                                <div class="name">Precio:</div>
-                                <div>' . $curso['precio'] . '</div>
-                            </div>
-                            <hr>';
-                }
+    $html .= '<div class="item" style="margin-bottom: 20px; padding: 15px; background-color: #f8f9fa; border-radius: 10px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+                <div class="name" style="font-weight: bold; color: #007bff; font-size: 18px;">Curso:</div>
+                <div style="margin-top: 5px; font-size: 16px;">' . $curso['nombre'] . '</div>
+            </div>
+            <div class="item" style="margin-bottom: 20px; padding: 15px; background-color: #f8f9fa; border-radius: 10px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+                <div class="name" style="font-weight: bold; color: #007bff; font-size: 18px;">Descripción:</div>
+                <div style="margin-top: 5px; font-size: 16px;">' . $curso['descripcion'] . '</div>
+            </div>
+            <div class="item" style="margin-bottom: 20px; padding: 15px; background-color: #f8f9fa; border-radius: 10px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+                <div class="name" style="font-weight: bold; color: #007bff; font-size: 18px;">Precio:</div>
+                <div style="margin-top: 5px; font-size: 16px;">' . $curso['precio'] . '</div>
+            </div>
+            <hr style="border-color: #ccc; margin: 30px 0;">';
+}
 
                 // Generar el PDF
                $url = $pdf->createPdf($html);
