@@ -4,10 +4,15 @@ require_once __DIR__ . '/Database/utils.php';
 require_once __DIR__ . '/Generals/responses.php';
 require_once __DIR__ . '/Generals/objects.php';
 require_once __DIR__ . '/Auth/jwtManager.php';
+require_once __DIR__ . '/Generals/pdfHelper.php';
+require_once __DIR__ . '/Generals/plantillas.php';
+
 //use Course;
 
 $db = DB::getInstance()->getConnection();
 $jwt = new JwtManager();
+$pdf = new PdfHelper();
+$plantilla = new plantillas();
 $CorrectToken = true;
 
 
@@ -85,15 +90,44 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 $response = new Response('ok', 'Curso obtenido con éxito', DB::setQueryToArray($result));
             }
         } else if ($_POST["req"] === "buy") {
-            // aun no esta listo
             $crud = new Crud($db);
             $infoUser = $jwt->getJwt();
-            $data = ["idUsuario" => $infoUser["id"], "idCurso" => $_POST['course_id']];
-            $result = $crud->insert("RelCursosUsuarios", $data);
-            if ($result) {
-                $response = new Response('ok', 'Acabas de adqurir el curso');
+            $idUser = $infoUser["id"];
+
+            $array = json_decode($_POST['cursos'], true);
+
+            if ($array != null) {
+                foreach ($array as $curso) {
+                    $data = ["idUsuario" => $idUser, "idCurso" => $curso["id"]];
+                    $result = $crud->insert("RelCursosUsuarios", $data);
+                    if (!$result) {
+                        $response = new Response('error', 'Ocurrio un error a el obtener el curso');
+                    }
+                }
+
+                $html = $plantilla->getPlantillaGeneral();
+                foreach ($array as $curso) {
+                    $html .= '<div class="item">
+                                <div class="name">Curso:</div>
+                                <div>' . $curso['nombre'] . '</div>
+                            </div>
+                            <div class="item">
+                                <div class="name">Descripción:</div>
+                                <div>' . $curso['descripcion'] . '</div>
+                            </div>
+                            <div class="item">
+                                <div class="name">Precio:</div>
+                                <div>' . $curso['precio'] . '</div>
+                            </div>
+                            <hr>';
+                }
+
+                // Generar el PDF
+               $url = $pdf->createPdf($html);
+
+                $response = new Response('ok', 'Acabas de adquirir el curso', $url);
             } else {
-                $response = new Response('error', 'Ocurrio un error a el obtener el curso');
+                $response = new Response('error', 'No hay cursos en el carrito');
             }
         } else if ($_POST["req"] === "my_courses") {
             $crud = new Crud($db);
@@ -113,4 +147,3 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 }
 
 $response->send($CorrectToken);
-?>
