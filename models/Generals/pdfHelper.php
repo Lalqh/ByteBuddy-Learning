@@ -32,6 +32,7 @@ class PdfHelper
             $this->uploadToWebDAV($pdfContent, $webdavPath);
             var_dump($webdavClient);
             var_dump($webdavPath);
+            exit();
             return $webdavPath;
         }
 
