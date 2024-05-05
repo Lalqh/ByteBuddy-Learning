@@ -25,19 +25,22 @@ class PdfHelper
         $this->mpdf->loadHtml($html);
         $this->mpdf->render();
         $pdfContent = $this->mpdf->output();
-        
+
         if (!empty($pdfContent)) {
             $filename = 'recibo_compra_' . uniqid() . '.pdf';
             $webdavPath = '/pdf/' . $userId . '/' . $filename;
             $this->uploadToWebDAV($pdfContent, $webdavPath);
             return $webdavPath;
         }
-        
+
         return false;
     }
 
     private function uploadToWebDAV($pdfContent, $webdavPath)
     {
-        $this->webdavClient->put($webdavPath, $pdfContent);
+        $response = $this->webdavClient->request('PUT', $webdavPath, $pdfContent);
+        if ($response['statusCode'] !== 201) {
+            throw new Exception('Error al cargar el archivo al servidor WebDAV');
+        }
     }
 }
