@@ -30,7 +30,7 @@ class PdfHelper
             $filename = 'recibo_compra_' . uniqid() . '.pdf';
             $webdavPath = 'pdf/' . $userId . '/' . $filename;
             $this->uploadToWebDAV($pdfContent, $webdavPath);
-            return $webdavPath;
+            return 'http://10.0.0.4/' . $webdavPath;
         }
 
         return false;
@@ -50,9 +50,7 @@ class PdfHelper
    
 
     $response = $this->webdavClient->request('PUT', $webdavPath, $pdfContent);
-    var_dump($response);
-    exit();
-
+    
     if ($response['statusCode'] !== 201) {
         throw new Exception('Error al cargar el archivo al servidor WebDAV');
     }
