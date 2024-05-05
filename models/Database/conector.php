@@ -9,9 +9,9 @@ class Db
     // private $password = 'Qbb5u8eGuA9RK2w5Vw+5UbRY';
     // private $database = 's32759_ByteBuddyLearning';
 
-    private $host = 'localhost';
-    private $username = 'root';
-    private $password = '';
+    private $host = '10.0.0.5';
+    private $username = 'bytebuddy';
+    private $password = '1234';
     private $database = 'bytebuddy';
 
 
