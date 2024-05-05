@@ -125,7 +125,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 }
 
                 // Generar el PDF
-                $url = $pdf->createPdf($html, i$dUser);
+                $url = $pdf->createPdf($html, $idUser);
 
                 if($url == false){
                     $response = new Response('error', 'Error a el generar el pdf');
