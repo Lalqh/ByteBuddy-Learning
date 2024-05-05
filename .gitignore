@@ -1,3 +1,5 @@
 vendor
 node_modules
 pdf
+composer.lock
+package-lock.json
