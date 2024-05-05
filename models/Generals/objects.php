@@ -49,20 +49,14 @@ class User
     {
         $crud = new Crud($this->dbConnection);
         $email = $crud->getDbConnection()->real_escape_string($this->email); // Escapar el valor para prevenir SQL injection
-    
+
         try {
             $result = $crud->select('COUNT(*) as count, contrasena, id, idTipoUsuario', 'usuarios', "correo = '$email'");
-            var_dump($result);
-            exit;
-            if ($result == false) {
+            if ($result === false) {
                 throw new Exception("Error en la consulta: " . $crud->dbConnection->error);
             }
-    
-            if (is_object($result)) {
-                return DB::setQueryToArray($result);
-            } else {
-                throw new Exception("El resultado de la consulta no es válido");
-            }
+            return DB::setQueryToArray($result);
+
         } catch (Exception $e) {
             return $e;
         }

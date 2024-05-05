@@ -82,60 +82,37 @@
 
   <div class="container mt-5">
     <div class="row" id="productos">
-        <?php
-        try {
-            // Incluir los archivos necesarios
-            require_once __DIR__ . '/models/Database/conector.php';
-            require_once __DIR__ . '/models/Database/utils.php';
+      <?php
+      require_once __DIR__ . '/models/Database/conector.php';
+      require_once __DIR__ . '/models/Database/utils.php';
+      $db = DB::getInstance()->getConnection();
 
-            // Obtener una instancia de la conexión a la base de datos
-            $db = DB::getInstance()->getConnection();
+      $crud = new Crud($db);
 
-            // Crear una instancia de la clase Crud para realizar consultas
-            $crud = new Crud($db);
+      $result = $crud->select("*", "Cursos", "_status = 'post'");
 
-            // Realizar la consulta para obtener los productos
-            $result = $crud->select("*", "Cursos", "_status = 'post'");
-
-            // Verificar si hay resultados
-            if (!$result) {
-                echo "No hay productos disponibles";
-            } else {
-                // Recorrer los resultados y mostrar los productos
-                foreach ($result as $producto) {
-                    ?>
-                    <div class="col-md-4 mb-4">
-                        <div class="card">
-                            <!-- Mostrar la imagen del producto -->
-                            <img src="<?php echo $producto['img_src']; ?>" class="card-img-top" alt="Producto">
-                            <div class="card-body">
-                                <!-- Mostrar el nombre del producto -->
-                                <h5 class="card-title"><?php echo $producto['nombre']; ?></h5>
-                                <!-- Mostrar la descripción del producto -->
-                                <p class="card-text"><?php echo $producto['descripcion']; ?></p>
-                                <!-- Mostrar el precio del producto -->
-                                <p class="card-text precio">$<?php echo $producto['precio']; ?></p>
-                                <!-- Agregar un botón para comprar el producto -->
-                                <button type="button" class="btn btn-primary agregar-carrito" 
-                                    data-id="<?php echo $producto['id']; ?>" 
-                                    data-nombre="<?php echo $producto['nombre']; ?>" 
-                                    data-descripcion="<?php echo $producto['descripcion']; ?>" 
-                                    data-precio="<?php echo $producto['precio']; ?>" 
-                                    data-imagen="<?php echo $producto['img_src']; ?>">
-                                    Comprar
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-            <?php
-                }
-            }
-        } catch (Exception $e) {
-            echo "Error: " . $e->getMessage();
+      if (!$result) {
+        echo "No hay productos disponibles";
+      } else {
+        foreach ($result as $producto) {
+      ?>
+          <div class="col-md-4 mb-4">
+            <div class="card">
+              <img src="<?php echo $producto['img_src']; ?>" class="card-img-top" alt="Producto">
+              <div class="card-body">
+                <h5 class="card-title"><?php echo $producto['nombre']; ?></h5>
+                <p class="card-text"><?php echo $producto['descripcion']; ?></p>
+                <p class="card-text precio">$<?php echo $producto['precio']; ?></p>
+                <button type="button" class="btn btn-primary agregar-carrito" data-id="<?php echo $producto['id']; ?>" data-nombre="<?php echo $producto['nombre']; ?>" data-descripcion="<?php echo $producto['descripcion']; ?>" data-precio="<?php echo $producto['precio']; ?>" data-imagen="<?php echo $producto['img_src']; ?>">Comprar</button>
+              </div>
+            </div>
+          </div>
+      <?php
         }
-        ?>
+      }
+      ?>
     </div>
-</div>
+  </div>
 
   <footer class="text-black mt-5 footer-custom">
     <div class="container">
