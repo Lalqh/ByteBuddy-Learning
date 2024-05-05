@@ -94,14 +94,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $infoUser = $jwt->getJwt();
             $idUser = $infoUser["id"];
 
+            var_dump($infoUser);
+            exit();
+
             $array = json_decode($_POST['cursos'], true);
 
             if ($array != null) {
                 foreach ($array as $curso) {
                     $data = ["idUsuario" => $idUser, "idCurso" => $curso["id"]];
                     $result = $crud->insert("RelCursosUsuarios", $data);
-                    var_dump($result);
-                    exit();
                     if (!$result) {
                         $response = new Response('error', 'Ocurrio un error a el obtener el curso');
                     }
