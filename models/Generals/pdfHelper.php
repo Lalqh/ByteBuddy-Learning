@@ -47,10 +47,11 @@ class PdfHelper
         
         $this->webdavClient->request('MKCOL', $directoryPath);
     }
-    var_dump($response);
-    exit();
+   
 
     $response = $this->webdavClient->request('PUT', $webdavPath, $pdfContent);
+    var_dump($response);
+    exit();
 
     if ($response['statusCode'] !== 201) {
         throw new Exception('Error al cargar el archivo al servidor WebDAV');
