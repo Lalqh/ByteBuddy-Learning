@@ -122,9 +122,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 }
 
                 // Generar el PDF
-               $url = $pdf->createPdf($html);
+                $url = $pdf->createPdf($html, i$dUser);
 
-                $response = new Response('ok', 'Acabas de adquirir el curso', $url);
+                if($url == false){
+                    $response = new Response('error', 'Error a el generar el pdf');
+                }else{
+                    $response = new Response('ok', 'Acabas de adquirir el curso', $url);
+                }
+
             } else {
                 $response = new Response('error', 'No hay cursos en el carrito');
             }
