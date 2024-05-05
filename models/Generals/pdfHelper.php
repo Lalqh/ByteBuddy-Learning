@@ -42,7 +42,7 @@ class PdfHelper
     $directoryPath = dirname($webdavPath);
 
     $response = $this->webdavClient->request('PROPFIND', $directoryPath);
-    var_dump($response);
+    var_dump($directoryPath);
     exit();
     if ($response['statusCode'] === 404) {
         
