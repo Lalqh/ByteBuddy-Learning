@@ -42,12 +42,13 @@ class PdfHelper
     $directoryPath = dirname($webdavPath);
 
     $response = $this->webdavClient->request('PROPFIND', $directoryPath);
-    var_dump($directoryPath);
-    exit();
+    
     if ($response['statusCode'] === 404) {
         
         $this->webdavClient->request('MKCOL', $directoryPath);
     }
+    var_dump($response);
+    exit();
 
     $response = $this->webdavClient->request('PUT', $webdavPath, $pdfContent);
 
