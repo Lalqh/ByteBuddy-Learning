@@ -62,7 +62,7 @@ class Crud
         }
     }
 
-    public function delete(string $table, string|int $id)
+    public function delete(string $table, string $id)
     {
         $sql = "UPDATE $table SET _status = 'trash' WHERE id = '$id'";
         try {
