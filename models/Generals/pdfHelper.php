@@ -26,14 +26,18 @@ class PdfHelper
         $this->mpdf->render();
         $pdfContent = $this->mpdf->output();
 
+    
+
+        /*
         if (!empty($pdfContent)) {
             $filename = 'recibo_compra_' . uniqid() . '.pdf';
             $webdavPath = '/pdf/' . $userId . '/' . $filename;
             $this->uploadToWebDAV($pdfContent, $webdavPath);
             return $webdavPath;
         }
+        */
 
-        return false;
+        return var_dump($pdfContent);;
     }
 
     private function uploadToWebDAV($pdfContent, $webdavPath)
