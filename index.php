@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="styles/index.css">
   <link
       rel="icon"
-      href="../assets/images/Logo ByteBuddy Learning.png"
+      href="assets/images/Logo ByteBuddy Learning.png"
       type="image/x-icon"
     />
 </head>
