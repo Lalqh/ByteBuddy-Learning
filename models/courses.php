@@ -122,10 +122,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 }
 
                 // Generar el PDF
-                $pdf->testConnection();
-                exit();
                 $url = $pdf->createPdf($html, $idUser);
-                exit();
 
                 if($url == false){
                     $response = new Response('error', 'Error a el generar el pdf');
