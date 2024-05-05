@@ -28,7 +28,7 @@ class PdfHelper
 
         if (!empty($pdfContent)) {
             $filename = 'recibo_compra_' . uniqid() . '.pdf';
-            $webdavPath = '/pdf/' . $userId . '/' . $filename;
+            $webdavPath = 'pdf/' . $userId . '/' . $filename;
             $this->uploadToWebDAV($pdfContent, $webdavPath);
             return $webdavPath;
         }
