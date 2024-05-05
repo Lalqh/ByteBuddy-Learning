@@ -8,6 +8,7 @@
   "require": {
     "firebase/php-jwt": "^6.9",
     "elasticemail/elasticemail-php": "*@dev",
-    "dompdf/dompdf": "^2.0"
+    "dompdf/dompdf": "^2.0",
+    "symfony/deprecation-contracts": "^2.4"
   }
 }
