@@ -37,12 +37,23 @@ class PdfHelper
     }
 
     private function uploadToWebDAV($pdfContent, $webdavPath)
-    {
-        $response = $this->webdavClient->request('PUT', $webdavPath, $pdfContent);
-        var_dump($response);
-        exit();
-        if ($response['statusCode'] !== 201) {
-            throw new Exception('Error al cargar el archivo al servidor WebDAV');
-        }
+{
+    // Extraer la ruta del directorio del webdavPath
+    $directoryPath = dirname($webdavPath);
+
+    $response = $this->webdavClient->request('PROPFIND', $directoryPath);
+    var_dump($response);
+    exit();
+    if ($response['statusCode'] === 404) {
+        
+        $this->webdavClient->request('MKCOL', $directoryPath);
     }
+
+    $response = $this->webdavClient->request('PUT', $webdavPath, $pdfContent);
+
+    if ($response['statusCode'] !== 201) {
+        throw new Exception('Error al cargar el archivo al servidor WebDAV');
+    }
+}
+
 }
