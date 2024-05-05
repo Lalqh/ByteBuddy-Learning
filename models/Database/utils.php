@@ -33,7 +33,8 @@ class Crud
             return "Error insert: " . $e->getMessage();
         }
     }
-    public function update(string $table, string $column, string|int $value, string|int $id)
+    
+    public function update(string $table, string $column, $value, $id)
     {
         $sql = "UPDATE $table SET $column = '$value' WHERE id = '$id'";
         try {
