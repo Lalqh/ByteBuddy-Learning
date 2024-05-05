@@ -122,6 +122,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 }
 
                 // Generar el PDF
+                $pdf->testConnection();
+                exit();
                 $url = $pdf->createPdf($html, $idUser);
                 exit();
 
