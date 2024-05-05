@@ -104,6 +104,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         $response = new Response('error', 'Ocurrio un error a el obtener el curso');
                     }
                 }
+                var_dump($result);
                 $html = $plantilla->getPlantillaGeneral();
                 foreach ($array as $curso) {
     $html .= '<div class="item" style="margin-bottom: 20px; padding: 15px; background-color: #f8f9fa; border-radius: 10px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
