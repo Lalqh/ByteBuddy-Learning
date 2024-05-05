@@ -94,9 +94,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $infoUser = $jwt->getJwt();
             $idUser = $infoUser["id"];
 
-            var_dump($infoUser);
-            exit();
-
             $array = json_decode($_POST['cursos'], true);
 
             if ($array != null) {
