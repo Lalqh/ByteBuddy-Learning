@@ -82,26 +82,32 @@
         <div class="container mt-5">
             <div class="row">
             <?php
-    require_once __DIR__ . '/../models/Auth/jwtManager.php'; // Corrección de ruta
-    require_once __DIR__ . '/../../models/Generals/pdfHelper.php'; // Corrección de ruta
-    $jwt = new JwtManager();
-    $pdf = new PdfHelper();
+    try {
+        require_once __DIR__ . '/../models/Auth/jwtManager.php'; // Corrección de ruta
+        require_once __DIR__ . '/../../models/Generals/pdfHelper.php'; // Corrección de ruta
+        $jwt = new JwtManager();
+        $pdf = new PdfHelper();
 
-    $infoUser = $jwt->getJwt();
-    $data = $infoUser["id"];
+        $infoUser = $jwt->getJwt();
+        $data = $infoUser["id"];
 
-    $result = $pdf->getPdfPaths($data); // Corrección del método
+        $result = $pdf->getPdfPaths($data); // Corrección del método
 
-    if (!$result) {
-        echo "Aún no hay compras realizadas";
-    } else {
+        if (!$result) {
+            echo "Aún no hay compras realizadas";
+        } else {
     ?>
-        <ul>
-            <?php foreach ($result as $pdfPath) { ?>
-                <li><a href="<?php echo $pdfPath; ?>" target="_blank"><?php echo basename($pdfPath); ?></a></li>
-            <?php } ?>
-        </ul>
-    <?php } ?>
+            <ul>
+                <?php foreach ($result as $pdfPath) { ?>
+                    <li><a href="<?php echo $pdfPath; ?>" target="_blank"><?php echo basename($pdfPath); ?></a></li>
+                <?php } ?>
+            </ul>
+    <?php
+        }
+    } catch (Exception $e) {
+        echo "Error: " . $e->getMessage();
+    }
+    ?>
             </div>
         </div>
 
