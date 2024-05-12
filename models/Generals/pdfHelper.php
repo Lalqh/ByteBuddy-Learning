@@ -60,7 +60,12 @@ public function getRecibos($userId)
     $webdavPath = 'pdf/' . $userId . '/';
     $directoryPath = dirname($webdavPath);
 
-    $response = $this->webdavClient->request('PROPFIND', $directoryPath);
+    $response = $this->webdavClient->request('PROPFIND', $directoryPath, [
+        'headers' => [
+            'Depth' => '1'
+        ]
+    ]);
+
 
     var_dump($webdavPath);
     var_dump($response);
