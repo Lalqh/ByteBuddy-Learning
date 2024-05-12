@@ -66,16 +66,17 @@ public function getRecibos($userId)
 
     $archivos = [];
     foreach ($response as $url => $props) {
-        $nombreArchivo = basename($url);
-        $archivos[] = $nombreArchivo;
+        if (is_array($props)) {
+            $nombreArchivo = basename($url);
+            $archivos[] = $nombreArchivo;
+        }
     }
 
     var_dump($archivos);
-
+    exit();
 
     return $archivos;
     
 }
-
 
 }
