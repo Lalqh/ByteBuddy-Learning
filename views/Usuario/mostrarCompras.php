@@ -34,13 +34,6 @@
         </div>
         <ul class="nav-list p-0">
             <li>
-            <li class="nav-item dropdown">
-                <a href="../Qr.html" class="nav-link">
-                    <i class="fa-solid fa-users"></i>
-                    <span class="links_name">Chat</span>
-                </a>
-                <span class="tooltip">Chat</span>
-            </li>
             </li>
             <li>
                 <a id="pas" href="./mostrarCompras.php" class="nav-link">
@@ -80,47 +73,27 @@
             </div>
         </nav>
         <div class="container mt-5">
-            <div class="row">
-            <?php
-    try {
-        echo "Hola";
-        require_once __DIR__ . '/../../models/Auth/jwtManager.php';
-        require_once __DIR__ . '/../../models/Generals/pdfHelper.php'; 
-        echo "Adios";
-        $jwt = new JwtManager();
-        $pdf = new PdfHelper();
-        echo "Adiosz2";
-        var_dump($jwt);
-        exit();
-        $infoUser = $jwt->getJwt();
-       
-        
-
-        $data = $infoUser["id"];
-        echo var_dump($data);
-        $result = $pdf->getPdfPaths($data); // Corrección del método
-        echo var_dump($result);
-        if (!$result) {
-            echo "Aún no hay compras realizadas";
-        } else {
-    ?>
-            <ul>
-                <?php foreach ($result as $pdfPath) { ?>
-                    <li><a href="<?php echo $pdfPath; ?>" target="_blank"><?php echo basename($pdfPath); ?></a></li>
-                <?php } ?>
-            </ul>
-    <?php
-        }
-    } catch (Exception $e) {
-        echo "Error: " . $e->getMessage();
-    }
-    ?>
+            <div class="row" id="pdfList">
             </div>
         </div>
 
     </section>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script type="module">
+        $(document).ready(() => {
+            import {
+      postData
+    } from '../../js/Generals/requests.js';
+        });
+
+      const data = new FormData();
+      data.append('req', 'recibos');
+      postData('../../models/courses.php', data)
+      .then((resp) => {
+         console.log(resp)
+      });
+    </script>
 
 </body>
 

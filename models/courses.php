@@ -143,6 +143,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             } else {
                 $response = new Response('ok', 'Cursos obtenidos con exito', DB::setQueryToArray($result));
             }
+        }else if($_POST["req"] === "recibos"){
+            $infoUser = $jwt->getJwt();
+            $id = $infoUser["id"];
+
+            $data = $pdf->getRecibos($id);
+            $response = new Response('ok', 'Cursos obtenidos con exito', DB::setQueryToArray($data));
         }
     } else {
         $CorrectToken = false;
