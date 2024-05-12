@@ -99,6 +99,7 @@ public function getRecibos($userId)
                 }
             }
         } else if ($props['{DAV:}getcontenttype'] !== 'httpd/unix-directory') {
+            echo "entro 2";
             $nombreArchivo = basename($url);
             $archivos[] = $nombreArchivo;
         }
