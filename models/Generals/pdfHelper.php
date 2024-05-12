@@ -64,29 +64,16 @@ public function getRecibos($userId)
         '{DAV:}getcontentlength',
     ]);
 
-    var_dump($response);
-    exit();
-
-
-    $pdfPaths = [];
-
-    if ($response['statusCode'] === 207) {
-        $xml = $response['body'];
-        $dom = new DOMDocument();
-        $dom->loadXML($xml);
-
-        $files = $dom->getElementsByTagName('d:href');
-        foreach ($files as $file) {
-            $filePath = urldecode($file->nodeValue);
-            if (substr($filePath, -1) !== '/') {
-                if (strtolower(pathinfo($filePath, PATHINFO_EXTENSION)) === 'pdf') {
-                    $pdfPaths[] = 'http://10.0.0.4/' . $filePath;
-                }
-            }
-        }
+    $archivos = [];
+    foreach ($response as $url => $props) {
+        $archivo = basename($url);
+        $archivos[] = $archivo;
     }
 
-    return $pdfPaths;
+    var_dump($archivo);
+    exit();
+
+    return $archivos;
 }
 
 
