@@ -89,9 +89,10 @@
         echo "Adios";
         $jwt = new JwtManager();
         $pdf = new PdfHelper();
-
+        echo "Adiosz2";
         $infoUser = $jwt->getJwt();
-        echo var_dump($infoUser);
+        var_dump($infoUser);
+        exit();
 
         $data = $infoUser["id"];
         echo var_dump($data);
