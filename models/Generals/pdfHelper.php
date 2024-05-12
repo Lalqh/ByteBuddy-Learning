@@ -59,21 +59,22 @@ public function getRecibos($userId)
 {
     $webdavPath = 'pdf/' . $userId . '/';
     $response = $this->webdavClient->propFind($webdavPath, [
-        '{DAV:}displayname',
+        '{DAV:}getcontenttype',
+        '{DAV:}getlastmodified',
         '{DAV:}getcontentlength',
     ]);
 
-    var_dump($response);
-    exit();
-
+    $archivos = [];
     foreach ($response as $url => $props) {
-        $archivo = basename($url);
-        $archivos[] = $archivo;
+        $nombreArchivo = basename($url);
+        $archivos[] = $nombreArchivo;
     }
 
-  
+    var_dump($archivos);
+
 
     return $archivos;
+    
 }
 
 
