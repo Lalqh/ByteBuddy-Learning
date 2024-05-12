@@ -83,18 +83,20 @@
             <div class="row">
             <?php
     try {
+        echo "Hola";
         require_once __DIR__ . '/../models/Auth/jwtManager.php';
         require_once __DIR__ . '/../../models/Generals/pdfHelper.php'; 
+        echo "Adios"
         $jwt = new JwtManager();
-        var_dump($jw);
-        exit();
         $pdf = new PdfHelper();
 
         $infoUser = $jwt->getJwt();
+        echo var_dump($infoUser);.
+
         $data = $infoUser["id"];
-
+        echo var_dump($data);
         $result = $pdf->getPdfPaths($data); // Corrección del método
-
+        echo var_dump($result);
         if (!$result) {
             echo "Aún no hay compras realizadas";
         } else {
