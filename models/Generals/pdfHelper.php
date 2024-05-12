@@ -60,23 +60,7 @@ public function getRecibos($userId)
     $webdavPath = 'pdf/' . $userId . '/';
     $directoryPath = dirname($webdavPath);
 
-    $response = $this->webdavClient->request('PROPFIND', $directoryPath, [
-        'headers' => [
-            'Depth' => '1',
-            'Content-Type' => 'text/xml', // Especifica el tipo de contenido XML
-        ],
-        'body' => '<?xml version="1.0" encoding="utf-8"?>
-                    <D:propfind xmlns:D="DAV:">
-                        <D:prop>
-                            <D:getcontentlength />
-                            <D:getlastmodified />
-                            <D:creationdate />
-                            <D:resourcetype />
-                            <D:getetag />
-                        </D:prop>
-                    </D:propfind>',
-    ]);
-
+    $response = $this->webdavClient->request('PROPFIND', $directoryPath);
 
     var_dump($webdavPath);
     var_dump($response);
