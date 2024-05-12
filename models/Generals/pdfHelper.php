@@ -55,52 +55,37 @@ class PdfHelper
     }
 }
 
-public function getRecibos($userId)
+public function getRecibos($userId, $webdavPath = 'pdf/')
 {
-    $webdavPath = 'pdf/' . $userId . '/';
-    $response = $this->webdavClient->propFind($webdavPath, [
+    $path = $webdavPath . $userId . '/';
+    $response = $this->webdavClient->propFind($path, [
         '{DAV:}displayname',
         '{DAV:}getcontenttype',
-        '{DAV:}getlastmodified',
-        '{DAV:}getcontentlength',
     ]);
 
     if ($response === null) {
         return [];
     }
 
-
-    var_dump($response);
-    exit();
-
     $archivos = [];
 
     foreach ($response as $url => $props) {
         if ($props['{DAV:}getcontenttype'] === 'httpd/unix-directory') {
-            $subResponse = $this->webdavClient->propFind($url, [
-                '{DAV:}displayname',
-                '{DAV:}getcontenttype',
-                '{DAV:}getlastmodified',
-                '{DAV:}getcontentlength',
-            ]);
-
-            if ($subResponse) {
-                foreach ($subResponse as $subUrl => $subProps) {
-                    if ($subProps['{DAV:}getcontenttype'] !== 'httpd/unix-directory') {
-                        $nombreArchivo = basename($subUrl);
-                        $archivos[] = $nombreArchivo;
-                    }
-                }
-            }
-        } else if ($props['{DAV:}getcontenttype'] !== 'httpd/unix-directory') {
+            // Si es un directorio, llamamos recursivamente a la función para obtener los archivos dentro
+            $subArchivos = $this->getRecibos($userId, $url . '/');
+            $archivos = array_merge($archivos, $subArchivos);
+        } else {
+            // Si es un archivo, lo agregamos a la lista de archivos
             $nombreArchivo = basename($url);
             $archivos[] = $nombreArchivo;
         }
     }
 
+    var_dump($archivos);
+    exit();
+
     return $archivos;
 }
-
 
 
 }
