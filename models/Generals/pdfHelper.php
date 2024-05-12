@@ -57,12 +57,16 @@ class PdfHelper
 
 public function getRecibos($userId)
 {
-   
-
     $webdavPath = 'pdf/' . $userId . '/';
-    $contents = $this->webdavClient->getDirectoryContents($webdavPath);
+    $response = $this->webdavClient->propFind($webdavPath, [
+        '{DAV:}displayname',
+        '{DAV:}getcontenttype',
+        '{DAV:}getlastmodified',
+        '{DAV:}getcontentlength',
+    ]);
 
-    var_dump($contents);
+    var_dump($webdavPath);
+    var_dump($response);
     exit();
 
     
