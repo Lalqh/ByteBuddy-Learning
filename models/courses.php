@@ -144,6 +144,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 $response = new Response('ok', 'Cursos obtenidos con exito', DB::setQueryToArray($result));
             }
         }else if($_POST["req"] === "recibos"){
+            echo "Si entro";
+            exit();
             $infoUser = $jwt->getJwt();
             $id = $infoUser["id"];
 
