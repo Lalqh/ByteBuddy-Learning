@@ -146,10 +146,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }else if($_POST["req"] === "recibos"){
             $infoUser = $jwt->getJwt();
             $id = $infoUser["id"];
+            var_dump($id);
+            exit();
 
             $data = $pdf->getRecibos($id);
-            var_dump($data);
-            exit();
+            
             $response = new Response('ok', 'Cursos obtenidos con exito', DB::setQueryToArray($data));
         }
     } else {
