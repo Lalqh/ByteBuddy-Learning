@@ -70,12 +70,13 @@ public function getRecibos($userId)
     }
 
 
-    var_dump($response);
-    exit();
+   
 
     $archivos = [];
 
     foreach ($response as $url => $props) {
+        var_dump($url);
+        exit();
         if ($props['{DAV:}getcontenttype'] === 'httpd/unix-directory') {
             $subResponse = $this->webdavClient->propFind($url, [
                 '{DAV:}displayname',
