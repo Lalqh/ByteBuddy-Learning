@@ -84,7 +84,7 @@
             <?php
     try {
         echo "Hola";
-        require_once __DIR__ . '/../models/Auth/jwtManager.php';
+        require_once __DIR__ . '/../../models/Auth/jwtManager.php';
         require_once __DIR__ . '/../../models/Generals/pdfHelper.php'; 
         echo "Adios";
         $jwt = new JwtManager();
