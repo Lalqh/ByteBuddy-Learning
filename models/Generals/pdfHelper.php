@@ -70,7 +70,7 @@ public function getRecibos($userId)
         $archivos[] = $archivo;
     }
 
-    var_dump($archivo);
+    var_dump($archivos);
     exit();
 
     return $archivos;
