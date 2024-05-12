@@ -90,9 +90,11 @@
         $jwt = new JwtManager();
         $pdf = new PdfHelper();
         echo "Adiosz2";
-        $infoUser = $jwt->getJwt();
-        var_dump($infoUser);
+        var_dump($jwt);
         exit();
+        $infoUser = $jwt->getJwt();
+       
+        
 
         $data = $infoUser["id"];
         echo var_dump($data);
