@@ -69,6 +69,10 @@ public function getRecibos($userId)
         return [];
     }
 
+
+    var_dump($response);
+    exit();
+
     $archivos = [];
 
     foreach ($response as $url => $props) {
