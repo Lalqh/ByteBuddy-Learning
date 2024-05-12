@@ -55,37 +55,18 @@ class PdfHelper
     }
 }
 
-public function getRecibos($userId, $webdavPath = 'pdf/')
+public function getRecibos($userId)
 {
-    $path = $webdavPath . $userId . '/';
-    $response = $this->webdavClient->propFind($path, [
-        '{DAV:}displayname',
-        '{DAV:}getcontenttype',
-    ]);
+    $webdavPath = 'pdf/' . $userId . '/';
+    $response = $this->webdavClient->propFind($webdavPath);
 
-    if ($response === null) {
-        return [];
-    }
-
-    $archivos = [];
-
-    foreach ($response as $url => $props) {
-        if ($props['{DAV:}getcontenttype'] === 'httpd/unix-directory') {
-            // Si es un directorio, llamamos recursivamente a la función para obtener los archivos dentro
-            $subArchivos = $this->getRecibos($userId, $url . '/');
-            $archivos = array_merge($archivos, $subArchivos);
-        } else {
-            // Si es un archivo, lo agregamos a la lista de archivos
-            $nombreArchivo = basename($url);
-            $archivos[] = $nombreArchivo;
-        }
-    }
-
-    var_dump($archivos);
+    var_dump($webdavPath);
+    var_dump($response);
     exit();
 
     return $archivos;
 }
+
 
 
 }
