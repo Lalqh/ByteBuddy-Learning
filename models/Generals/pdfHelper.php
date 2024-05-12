@@ -58,9 +58,7 @@ class PdfHelper
 public function getRecibos($userId)
 {
     $webdavPath = 'pdf/' . $userId . '/';
-    $response = $this->webdavClient->request('PROPFIND', $webdavPath, null, [
-        'Depth' => 'infinity'
-    ]);
+    $response = $this->webdavClient->request('PROPFIND', $webdavPath);
 
     var_dump($response);
     exit();
