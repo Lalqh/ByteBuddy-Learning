@@ -82,26 +82,26 @@
         <div class="container mt-5">
             <div class="row">
             <?php
-            require_once __DIR__ . '../..//models/Auth/jwtManager.php';
-            require_once __DIR__ . '../../models/Generals/pdfHelper.php';
-            $jwt = new JwtManager();
-            $pdf = new PdfHelper();
+    require_once __DIR__ . '/../models/Auth/jwtManager.php'; // Corrección de ruta
+    require_once __DIR__ . '/../../models/Generals/pdfHelper.php'; // Corrección de ruta
+    $jwt = new JwtManager();
+    $pdf = new PdfHelper();
 
-            $infoUser = $jwt->getJwt();
-            $data = $infoUser["id"];
+    $infoUser = $jwt->getJwt();
+    $data = $infoUser["id"];
 
-            $result = pdf->getRecibos($data);
+    $result = $pdf->getPdfPaths($data); // Corrección del método
 
-            if (!$result) {
-              echo "Aún no hay compras realizadas";
-            } else {
-                ?>
-                <ul>
-                    <?php foreach ($pdfPaths as $pdfPath) { ?>
-                        <li><a href="<?php echo $pdfPath; ?>" target="_blank"><?php echo basename($pdfPath); ?></a></li>
-                    <?php } ?>
-                </ul>
+    if (!$result) {
+        echo "Aún no hay compras realizadas";
+    } else {
+    ?>
+        <ul>
+            <?php foreach ($result as $pdfPath) { ?>
+                <li><a href="<?php echo $pdfPath; ?>" target="_blank"><?php echo basename($pdfPath); ?></a></li>
             <?php } ?>
+        </ul>
+    <?php } ?>
             </div>
         </div>
 
