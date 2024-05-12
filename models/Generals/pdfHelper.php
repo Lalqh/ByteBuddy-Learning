@@ -77,6 +77,7 @@ public function getRecibos($userId)
     foreach ($response as $url => $props) {
        
         if ($props['{DAV:}getcontenttype'] == 'httpd/unix-directory') {
+            echo "entro cd";
             var_dump($url);
             exit();
             $subResponse = $this->webdavClient->propFind($url, [
