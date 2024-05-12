@@ -83,9 +83,11 @@
             <div class="row">
             <?php
     try {
-        require_once __DIR__ . '/../models/Auth/jwtManager.php'; // Corrección de ruta
-        require_once __DIR__ . '/../../models/Generals/pdfHelper.php'; // Corrección de ruta
+        require_once __DIR__ . '/../models/Auth/jwtManager.php';
+        require_once __DIR__ . '/../../models/Generals/pdfHelper.php'; 
         $jwt = new JwtManager();
+        var_dump($jw);
+        exit();
         $pdf = new PdfHelper();
 
         $infoUser = $jwt->getJwt();
