@@ -14,7 +14,7 @@ class PdfHelper
     {
         $this->mpdf = new Dompdf();
         $this->webdavClient = new Client([
-            'baseUri' => 'http://10.0.0.4/pdf/',
+            'baseUri' => 'http://10.0.0.4/',
             'userName' => 'lalo',
             'password' => '1234',
         ]);
@@ -57,16 +57,15 @@ class PdfHelper
 
 public function getRecibos($userId)
 {
-    $webdavPath = '/' . $userId . '/';
-  
+   
 
-    $response = $this->webdavClient->request('PROPFIND', $webdavPath);
+    $response = $this->webdavClient->propfind('collection', array(
+        '{DAV:}displayname',
+        '{DAV:}getcontentlength',
+    ));
 
-    var_dump($webdavPath);
     var_dump($response);
     exit();
-
-    return $archivos;
 }
 
 
