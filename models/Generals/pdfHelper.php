@@ -65,6 +65,9 @@ public function getRecibos($userId)
         '{DAV:}getcontentlength',
     ]);
 
+    var_dump($response);
+    exit();
+
     
     if ($response === null) {
         return [];
