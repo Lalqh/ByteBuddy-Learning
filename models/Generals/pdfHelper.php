@@ -62,7 +62,7 @@ public function getRecibos($userId)
         'Depth' => 1
     ]);
 
-    var_dump($response);
+    var_dump($response['body']);
     exit();
 
 
