@@ -70,25 +70,19 @@ public function getRecibos($userId)
     }
 
 
-   
+    var_dump($response);
+    exit();
 
     $archivos = [];
 
     foreach ($response as $url => $props) {
-       
         if ($props['{DAV:}getcontenttype'] === 'httpd/unix-directory') {
-            echo "entro cd";
-            var_dump($url);
-            exit();
             $subResponse = $this->webdavClient->propFind($url, [
                 '{DAV:}displayname',
                 '{DAV:}getcontenttype',
                 '{DAV:}getlastmodified',
                 '{DAV:}getcontentlength',
             ]);
-
-            var_dump($subResponse);
-           
 
             if ($subResponse) {
                 foreach ($subResponse as $subUrl => $subProps) {
@@ -99,7 +93,6 @@ public function getRecibos($userId)
                 }
             }
         } else if ($props['{DAV:}getcontenttype'] !== 'httpd/unix-directory') {
-            echo "entro 2";
             $nombreArchivo = basename($url);
             $archivos[] = $nombreArchivo;
         }
