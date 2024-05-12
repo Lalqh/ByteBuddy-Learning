@@ -91,7 +91,7 @@
         $pdf = new PdfHelper();
 
         $infoUser = $jwt->getJwt();
-        echo var_dump($infoUser);.
+        echo var_dump($infoUser);
 
         $data = $infoUser["id"];
         echo var_dump($data);
