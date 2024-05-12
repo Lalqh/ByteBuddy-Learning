@@ -62,6 +62,9 @@ public function getRecibos($userId)
 
     $pdfPaths = [];
 
+    var_dump($response);
+    exit();
+
     if ($response['statusCode'] === 207) {
         $xml = $response['body'];
         $dom = new DOMDocument();
