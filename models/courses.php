@@ -147,9 +147,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $infoUser = $jwt->getJwt();
             $id = $infoUser["id"];
             
-            $data = $pdf->getRecibos($id);
+            $info = $pdf->getRecibos($id);
             
-            $response = new Response('ok', 'Cursos obtenidos con exito', DB::setQueryToArray($data));
+            $response = new Response('ok', 'Cursos obtenidos con exito', DB::setQueryToArray($info));
         }
     } else {
         $CorrectToken = false;
