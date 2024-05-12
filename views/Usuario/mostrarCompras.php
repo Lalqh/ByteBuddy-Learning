@@ -33,36 +33,6 @@
             <i class="bx bx-menu" id="btn"></i>
         </div>
         <ul class="nav-list p-0">
-            <!-- <li>
-                <a href="#">
-                    <i class="fa-solid fa-user"></i>
-                    <span class="links_name">Usuario</span>
-                </a>
-                <span class="tooltip">Usuario</span>
-            </li>
-            <li>
-                <a href="#">
-                    <i class="fa-solid fa-message"></i>
-                    <span class="links_name">Mensajes</span>
-                </a>
-                <span class="tooltip">Mensajes</span>
-            </li>
-            <li>
-            <li class="nav-item dropdown">
-                <a href="#" class="nav-link" data-bs-toggle="dropdown">
-                    <i class="fa-solid fa-folder"></i>
-                    <span class="links_name">Mis cursos</span>
-                </a>
-                <ul class="dropdown-menu ">
-                    <li>
-                        <a href="#" class="dropdown-item bg-white">Curso C++</a>
-                        <a href="#" class="dropdown-item bg-white">Curso Java</a>
-                        <a href="#" class="dropdown-item bg-white">Curso HTML</a>
-                    </li>
-                </ul>
-                <span class="tooltip">Mis cursos</span>
-            </li>
-            </li> -->
             <li>
             <li class="nav-item dropdown">
                 <a href="../Qr.html" class="nav-link">
@@ -111,51 +81,32 @@
         </nav>
         <div class="container mt-5">
             <div class="row">
-                <!-- Sección de detalles del producto -->
-                <div class="col-lg-6">
-                    <!-- Imagen del producto -->
-                    <img id="img_course" src="" alt="Producto" class="img-fluid text-center" width="300px">
+            <?php
+            require_once __DIR__ . '../..//models/Auth/jwtManager.php';
+            require_once __DIR__ . '../../models/Generals/pdfHelper.php';
+            $jwt = new JwtManager();
+            $pdf = new PdfHelper();
 
-                    <!-- Detalles del producto -->
-                    <div class="mt-3">
-                        <h2 id="product_title">Nombre del Producto</h2>
-                        <p id="product_price">Precio: $50.00</p>
-                        <p id="product_description">Descripción del producto Lorem ipsum dolor sit amet, consectetur
-                            adipiscing
-                            elit.</p>
-                        <div class="d-flex align-items-center mt-3" id="ratingContainer">
-                            <p class="me-2">Calificación:</p>
-                        </div>
-                        <button id="comprar" class="btn btn-primary">Comprar ahora!</button>
-                    </div>
-                </div>
+            $infoUser = $jwt->getJwt();
+            $data = $infoUser["id"];
 
-                <!-- Sección de comentarios -->
-                <div class="col-lg-6">
+            $result = pdf->getRecibos($data);
 
-                    <h3>Comentarios</h3>
-
-                    <!-- Aquí puedes agregar un formulario para añadir nuevos comentarios -->
-
-                    <!-- Lista de comentarios -->
-                    <ul id="comentarios" class="list-group mt-3">
-                        <li class="list-group-item">
-                            <strong>Luis Chavira:</strong>
-                            <p>Excelente producto. ¡Me encanta!</p>
-                        </li>
-                        <li class="list-group-item">
-                            <strong>Nachito:</strong>
-                            <p>Buena calidad a un precio asequible.</p>
-                        </li>
-                        <!-- Agrega más comentarios según sea necesario -->
-                    </ul>
-                </div>
+            if (!$result) {
+              echo "Aún no hay compras realizadas";
+            } else {
+                ?>
+                <ul>
+                    <?php foreach ($pdfPaths as $pdfPath) { ?>
+                        <li><a href="<?php echo $pdfPath; ?>" target="_blank"><?php echo basename($pdfPath); ?></a></li>
+                    <?php } ?>
+                </ul>
+            <?php } ?>
             </div>
         </div>
 
     </section>
 
-    <script type="module" src="../../js/product.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 
 </body>

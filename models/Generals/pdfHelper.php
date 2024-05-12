@@ -38,7 +38,6 @@ class PdfHelper
 
     private function uploadToWebDAV($pdfContent, $webdavPath)
 {
-    // Extraer la ruta del directorio del webdavPath
     $directoryPath = dirname($webdavPath);
 
     $response = $this->webdavClient->request('PROPFIND', $directoryPath);
@@ -55,5 +54,32 @@ class PdfHelper
         throw new Exception('Error al cargar el archivo al servidor WebDAV');
     }
 }
+
+public function getRecibos($userId)
+{
+    $webdavPath = 'pdf/' . $userId . '/';
+    $response = $this->webdavClient->propfind($webdavPath, 1);
+
+    $pdfPaths = [];
+
+    if ($response['statusCode'] === 207) {
+        $xml = $response['body'];
+        $dom = new DOMDocument();
+        $dom->loadXML($xml);
+
+        $files = $dom->getElementsByTagName('d:href');
+        foreach ($files as $file) {
+            $filePath = urldecode($file->nodeValue);
+            if (substr($filePath, -1) !== '/') {
+                if (strtolower(pathinfo($filePath, PATHINFO_EXTENSION)) === 'pdf') {
+                    $pdfPaths[] = 'http://10.0.0.4/' . $filePath;
+                }
+            }
+        }
+    }
+
+    return $pdfPaths;
+}
+
 
 }

@@ -90,10 +90,12 @@
       data.append('cursos', JSON.stringify(JSON.parse(localStorage.getItem('carrito'))) || []);
       postData('../models/courses.php', data)
       .then((resp) => {
-         //localStorage.removeItem('carrito');
-        //window.location.href = '../index.php';
-       // localStorage.removeItem('carrito');
-        //window.location.href = '../index.php';
+         localStorage.removeItem('carrito');
+         const type = resp.code == "ok" ? "success" : "error";
+         Swal.fire({
+          icon: type,
+          title: resp.message
+        })
       });
 
       //localStorage.removeItem('carrito');
@@ -141,6 +143,7 @@
   </footer>
 
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
