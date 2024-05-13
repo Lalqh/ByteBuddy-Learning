@@ -59,7 +59,7 @@ public function getRecibos($userId)
 {
    
 
-    $response = $this->webdavClient->request('PROPFIND', '/pdf/');
+    $response = $this->webdavClient->request('PROPFIND', 'pdf/8c785557-9dea-4e8a-96e7-d4a692ab3b9c/');
 
     var_dump($response);
     exit();
