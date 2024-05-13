@@ -86,7 +86,13 @@
             data.append('req', 'recibos');
             postData('../../models/courses.php', data)
                 .then((resp) => {
-                    console.log(resp)
+                    const pdfList = document.getElementById('pdfList');
+                    const info = res.data
+                    data.forEach(info => {
+                            const listItem = document.createElement('div');
+                            listItem.innerHTML = `<a href="">${info}</a>`;
+                            pdfList.appendChild(listItem);
+                        });
                 });
         });
 
