@@ -65,10 +65,6 @@ public function getRecibos($userId)
         '{DAV:}getcontentlength',
     ], 1);
 
-    var_dump($webdavPath);
-    var_dump($response);
-    exit();
-
     
     if ($response === null) {
         return [];
