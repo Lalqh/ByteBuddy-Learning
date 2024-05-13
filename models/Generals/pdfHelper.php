@@ -75,7 +75,7 @@ public function getRecibos($userId)
     foreach ($response as $url => $props) {
         if (isset($props['{DAV:}getcontenttype']) && $props['{DAV:}getcontenttype'] !== 'httpd/unix-directory') {
             $nombreArchivo = basename($url);
-            $archivos[] = $nombreArchivo;
+            $archivos[] = 'http://10.0.0.4/pdf/'.$nombreArchivo;
         }
     }
 
