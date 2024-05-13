@@ -93,7 +93,7 @@
                     const data = resp.data;
                     data.forEach(fileName => {
                         const listItem = document.createElement('div');
-                        listItem.innerHTML = `<a href="${fileName}">${fileName}</a>`;
+                        listItem.innerHTML = `<a  href="http://10.0.0.4/pdf/${fileName}">${fileName}</a>`;
                         pdfList.appendChild(listItem);
                     });
 
