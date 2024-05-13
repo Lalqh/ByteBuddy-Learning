@@ -79,12 +79,8 @@ public function getRecibos($userId)
         }
     }
 
-    var_dump($archivos);
-    exit();
-
     return $archivos;
 }
-
 
 
 }
