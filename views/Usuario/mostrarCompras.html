@@ -87,7 +87,7 @@
             postData('../../models/courses.php', data)
                 .then((resp) => {
                     const pdfList = document.getElementById('pdfList');
-                    const info = res.data
+                    const info = resp.data
                     data.forEach(info => {
                             const listItem = document.createElement('div');
                             listItem.innerHTML = `<a href="">${info}</a>`;
