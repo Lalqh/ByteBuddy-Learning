@@ -58,13 +58,34 @@ class PdfHelper
 public function getRecibos($userId)
 {
    
-
-    $response = $this->webdavClient->request('PROPFIND', 'pdf/8c785557-9dea-4e8a-96e7-d4a692ab3b9c/', , array(
+    $response = $this->webdavClient->propFind('pdf/', [
         '{DAV:}displayname',
-        '{DAV:}getcontentlength',));
+        '{DAV:}getcontenttype',
+        '{DAV:}getlastmodified',
+        '{DAV:}getcontentlength',
+    ]);
 
     var_dump($response);
     exit();
+
+    
+    if ($response === null) {
+        return [];
+    }
+
+    $archivos = [];
+
+    foreach ($response as $url => $props) {
+        if (isset($props['{DAV:}getcontenttype']) && $props['{DAV:}getcontenttype'] !== 'httpd/unix-directory') {
+            $nombreArchivo = basename($url);
+            $archivos[] = $nombreArchivo;
+        }
+    }
+
+    var_dump($archivos);
+    exit();
+
+    return $archivos;
 }
 
 
