@@ -88,6 +88,7 @@
                 .then((resp) => {
                     const pdfList = document.getElementById('pdfList');
                     const info = resp.data
+                    console.log(info)
                     data.forEach(info => {
                             const listItem = document.createElement('div');
                             listItem.innerHTML = `<a href="">${info}</a>`;
