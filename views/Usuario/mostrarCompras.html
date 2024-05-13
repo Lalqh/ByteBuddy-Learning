@@ -90,11 +90,13 @@
                     console.log(resp)
                     const info = resp.data
                     console.log(info)
-                    data.forEach(info => {
-                            const listItem = document.createElement('div');
-                            listItem.innerHTML = `<a href="">${info}</a>`;
-                            pdfList.appendChild(listItem);
-                        });
+                    const data = resp.data;
+                    data.forEach(fileName => {
+                        const listItem = document.createElement('div');
+                        listItem.innerHTML = `<a href="${fileName}">${fileName}</a>`;
+                        pdfList.appendChild(listItem);
+                    });
+
                 });
         });
 
