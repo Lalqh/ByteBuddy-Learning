@@ -87,6 +87,7 @@
             postData('../../models/courses.php', data)
                 .then((resp) => {
                     const pdfList = document.getElementById('pdfList');
+                    console.log(resp)
                     const info = resp.data
                     console.log(info)
                     data.forEach(info => {
