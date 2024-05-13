@@ -1,6 +1,7 @@
 <?php
 
 require __DIR__ . '/../../vendor/autoload.php';
+require __DIR__ .'./email.php';
 
 use Dompdf\Dompdf;
 use Sabre\DAV\Client;
@@ -9,6 +10,7 @@ class PdfHelper
 {
     private $mpdf;
     private $webdavClient;
+    private $email;
 
     public function __construct()
     {
@@ -18,13 +20,15 @@ class PdfHelper
             'userName' => 'lalo',
             'password' => '1234',
         ]);
+        $this->email = new Email();
     }
 
-    public function createPdf($html, $userId)
+    public function createPdf($html, $userId, $email)
     {
         $this->mpdf->loadHtml($html);
         $this->mpdf->render();
         $pdfContent = $this->mpdf->output();
+        $this->email->sendEmailWithPdf($email, "nueva compra", $pdfContent);
 
         if (!empty($pdfContent)) {
             $filename = 'recibo_compra_' . uniqid() . '.pdf';
@@ -82,5 +86,43 @@ public function getRecibos($userId)
     return $archivos;
 }
 
+public function getAllRecibos()
+{
+    $webdavPath = 'pdf/';
+    $response = $this->webdavClient->propFind($webdavPath, [
+        '{DAV:}displayname',
+        '{DAV:}getcontenttype',
+        '{DAV:}getlastmodified',
+        '{DAV:}getcontentlength',
+    ], 1);
+
+    if ($response === null) {
+        return [];
+    }
+
+    $archivos = [];
+
+    foreach ($response as $url => $props) {
+        if (isset($props['{DAV:}getcontenttype']) && $props['{DAV:}getcontenttype'] === 'httpd/unix-directory') {
+            $subResponse = $this->webdavClient->propFind($url, [
+                '{DAV:}displayname',
+                '{DAV:}getcontenttype',
+                '{DAV:}getlastmodified',
+                '{DAV:}getcontentlength',
+            ], 1);
+
+            if ($subResponse !== null) {
+                foreach ($subResponse as $subUrl => $subProps) {
+                    if (isset($subProps['{DAV:}getcontenttype']) && $subProps['{DAV:}getcontenttype'] !== 'httpd/unix-directory') {
+                        $nombreArchivo = basename($subUrl);
+                        $archivos[] = 'http://10.0.0.4/pdf/'.$nombreArchivo;
+                    }
+                }
+            }
+        }
+    }
+
+    return $archivos;
+}
 
 }

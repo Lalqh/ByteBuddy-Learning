@@ -122,7 +122,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 }
 
                 // Generar el PDF
-                $url = $pdf->createPdf($html, $idUser);
+                $userData = $crud->select('correo', 'usuarios', "id = '$idUser'");
+                
+                $url = $pdf->createPdf($html, $idUser, $userData[0]['correo']);
 
                 if($url == false){
                     $response = new Response('error', 'Error a el generar el pdf');
@@ -146,8 +148,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }else if($_POST["req"] === "recibos"){
             $infoUser = $jwt->getJwt();
             $id = $infoUser["id"];
+            $typeUser = $infoUser["tipoUsuario"];
             
-            $info = $pdf->getRecibos($id);
+            $info = [];
+
+            if($typeUser == 3){
+                $info = $pdf->getAllRecibos();
+            }else{
+                $info = $pdf->getRecibos($id);
+            }
             
             $response = new Response('ok', 'Cursos obtenidos con exito', $info);
         }
