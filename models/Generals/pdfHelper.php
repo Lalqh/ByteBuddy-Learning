@@ -58,7 +58,7 @@ class PdfHelper
 public function getRecibos($userId)
 {
    
-    $response = $this->webdavClient->propFind('pdf/8c785557-9dea-4e8a-96e7-d4a692ab3b9c	', [
+    $response = $this->webdavClient->propFind('pdf/8c785557-9dea-4e8a-96e7-d4a692ab3b9c', [
         '{DAV:}displayname',
         '{DAV:}getcontenttype',
         '{DAV:}getlastmodified',
