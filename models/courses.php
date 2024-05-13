@@ -149,7 +149,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             
             $info = $pdf->getRecibos($id);
             
-            $response = new Response('ok', 'Cursos obtenidos con exito', DB::setQueryToArray($info));
+            $response = new Response('ok', 'Cursos obtenidos con exito', $info);
         }
     } else {
         $CorrectToken = false;
