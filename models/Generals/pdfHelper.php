@@ -59,10 +59,7 @@ public function getRecibos($userId)
 {
    
 
-    $response = $this->webdavClient->propfind('collection', array(
-        '{DAV:}displayname',
-        '{DAV:}getcontentlength',
-    ));
+    $response = $this->webdavClient->request('GET', '/pdf/');
 
     var_dump($response);
     exit();
