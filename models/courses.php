@@ -4,12 +4,11 @@ require_once __DIR__ . '/Database/utils.php';
 require_once __DIR__ . '/Generals/responses.php';
 require_once __DIR__ . '/Generals/objects.php';
 require_once __DIR__ . '/Auth/jwtManager.php';
-echo "IMpors pk";
-exit();
 require_once __DIR__ . '/Generals/pdfHelper.php';
 require_once __DIR__ . '/Generals/plantillas.php';
 
-
+echo "IMpors pk";
+exit();
 //use Course;
 
 $db = DB::getInstance()->getConnection();
