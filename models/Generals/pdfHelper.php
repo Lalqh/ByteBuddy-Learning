@@ -1,7 +1,9 @@
 <?php
 
 require __DIR__ . '/../../vendor/autoload.php';
-require __DIR__ .'./email.php';
+echo "IMPORT de email";
+exit();
+require __DIR__ .'/./email.php';
 
 use Dompdf\Dompdf;
 use Sabre\DAV\Client;
