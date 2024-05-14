@@ -105,6 +105,7 @@ public function getAllRecibos()
 
     foreach ($response as $url => $props) {
         if (isset($props['{DAV:}getcontenttype']) && $props['{DAV:}getcontenttype'] === 'httpd/unix-directory') {
+            $userId = basename($url);
             $subResponse = $this->webdavClient->propFind($url, [
                 '{DAV:}displayname',
                 '{DAV:}getcontenttype',
