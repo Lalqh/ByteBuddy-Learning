@@ -53,8 +53,6 @@ class Crud
         $sql = "SELECT $columns FROM $table WHERE $conditionals";
         try {
             $result = $this->dbConnection->query($sql);
-            var_dump($result);
-            exit();
             if ($result === false) {
                 throw new Exception("Error en la consulta: " . $this->dbConnection->error);
             }

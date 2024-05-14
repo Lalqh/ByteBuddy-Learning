@@ -136,6 +136,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 $response = new Response('error', 'No hay cursos en el carrito');
             }
         } else if ($_POST["req"] === "my_courses") {
+            echo 'entro a petcion';
             $crud = new Crud($db);
             $infoUser = $jwt->getJwt();
             $data = $infoUser["id"];
