@@ -26,8 +26,6 @@ class PdfHelper
 
     public function createPdf($html, $userId, $email)
     {
-        var_dump($email);
-        exit();
         $this->mpdf->loadHtml($html);
         $this->mpdf->render();
         $pdfContent = $this->mpdf->output();
