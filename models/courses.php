@@ -140,6 +140,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $infoUser = $jwt->getJwt();
             $data = $infoUser["id"];
             $result = $crud->select('c.id, c.nombre, c.descripcion, c.img_src', 'Cursos as c INNER JOIN RelCursosUsuarios  as r ON c.id = r.idCurso', "idUsuario = '$data'");
+            var_dump($result);
+            exit();
             if (!$result) {
                 $response = new Response('error', 'Error al obtener tus cursos');
             } else {
