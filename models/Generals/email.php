@@ -134,7 +134,7 @@ class Email
                 return false;
             }
         } catch (Exception $e) {
-            return 'Exception when calling EE API: ', $e->getMessage(), PHP_EOL;
+            echo 'Exception when calling EE API: ', $e->getMessage(), PHP_EOL;
         }
     }
 }
