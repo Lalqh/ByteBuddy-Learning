@@ -116,7 +116,7 @@ public function getAllRecibos()
                 foreach ($subResponse as $subUrl => $subProps) {
                     if (isset($subProps['{DAV:}getcontenttype']) && $subProps['{DAV:}getcontenttype'] !== 'httpd/unix-directory') {
                         $nombreArchivo = basename($subUrl);
-                        $archivos[] = 'http://10.0.0.4/pdf/'.$nombreArchivo;
+                        $archivos[] = 'http://10.0.0.4/pdf/'.$userId.'/'.$nombreArchivo;
                     }
                 }
             }
