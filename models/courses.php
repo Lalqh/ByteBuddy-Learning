@@ -7,8 +7,6 @@ require_once __DIR__ . '/Auth/jwtManager.php';
 require_once __DIR__ . '/Generals/pdfHelper.php';
 require_once __DIR__ . '/Generals/plantillas.php';
 
-echo "IMpors pk";
-exit();
 //use Course;
 
 $db = DB::getInstance()->getConnection();
