@@ -15,7 +15,7 @@ export const postData = (url, data) => {
       .then(async (response) => {
         console.log("respuesta", response)
         const { code, message, data } = await response.json();
-        // console.log(response.text());
+        console.log(response.text());
         if (response.status === 200) {
           resolve({ code, message, data });
         } else {
