@@ -137,6 +137,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             }
         } else if ($_POST["req"] === "my_courses") {
             echo 'entro a petcion';
+            exit();
             $crud = new Crud($db);
             $infoUser = $jwt->getJwt();
             $data = $infoUser["id"];
