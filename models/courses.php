@@ -1,4 +1,8 @@
 <?php
+
+echo "Hola mundo";
+exit();
+
 require_once __DIR__ . '/Database/conector.php';
 require_once __DIR__ . '/Database/utils.php';
 require_once __DIR__ . '/Generals/responses.php';
@@ -17,6 +21,8 @@ $CorrectToken = true;
 
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    echo "Hola mundo";
+e   exit();
     if ($jwt->verifyJwt()) {
         if ($_POST["req"] === "create") {
             $crud = new Crud($db);
