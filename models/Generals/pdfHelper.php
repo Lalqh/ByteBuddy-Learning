@@ -29,7 +29,7 @@ class PdfHelper
         $this->mpdf->loadHtml($html);
         $this->mpdf->render();
         $pdfContent = $this->mpdf->output();
-        $this->email->sendEmailWithPdf($email, "nueva compra", $pdfContent);
+        //$this->email->sendEmailWithPdf($email, "nueva compra", $pdfContent);
         
         if (!empty($pdfContent)) {
             $filename = 'recibo_compra_' . uniqid() . '.pdf';
