@@ -1,8 +1,5 @@
 <?php
 
-echo "Hola mundo";
-exit();
-
 require_once __DIR__ . '/Database/conector.php';
 require_once __DIR__ . '/Database/utils.php';
 require_once __DIR__ . '/Generals/responses.php';
