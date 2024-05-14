@@ -1,5 +1,4 @@
 <?php
-
 require_once __DIR__ . '/Database/conector.php';
 require_once __DIR__ . '/Database/utils.php';
 require_once __DIR__ . '/Generals/responses.php';
@@ -8,6 +7,8 @@ require_once __DIR__ . '/Auth/jwtManager.php';
 require_once __DIR__ . '/Generals/pdfHelper.php';
 require_once __DIR__ . '/Generals/plantillas.php';
 
+echo "IMpors pk";
+exit();
 //use Course;
 
 $db = DB::getInstance()->getConnection();
@@ -18,8 +19,6 @@ $CorrectToken = true;
 
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    echo "Hola mundo";
-   exit();
     if ($jwt->verifyJwt()) {
         if ($_POST["req"] === "create") {
             $crud = new Crud($db);
@@ -47,8 +46,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         } else if ($_POST["req"] === "get_courses") {
             $crud = new Crud($db);
             $result = $crud->select("*", "Cursos", "_status = 'post'");
-            var_dump($result);
-            exit();
             if (!$result) {
                 $response = new Response("error", "Error al obtener los cursos");
             } else {
@@ -141,22 +138,16 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 $response = new Response('error', 'No hay cursos en el carrito');
             }
         } else if ($_POST["req"] === "my_courses") {
-            echo 'entro a petcion';
-            exit();
             $crud = new Crud($db);
             $infoUser = $jwt->getJwt();
             $data = $infoUser["id"];
             $result = $crud->select('c.id, c.nombre, c.descripcion, c.img_src', 'Cursos as c INNER JOIN RelCursosUsuarios  as r ON c.id = r.idCurso', "idUsuario = '$data'");
-            var_dump($result);
-            exit();
             if (!$result) {
                 $response = new Response('error', 'Error al obtener tus cursos');
             } else {
                 $response = new Response('ok', 'Cursos obtenidos con exito', DB::setQueryToArray($result));
             }
         }else if($_POST["req"] === "recibos"){
-            echo "entro en recibos";
-            exit();
             $infoUser = $jwt->getJwt();
             $id = $infoUser["id"];
             $typeUser = $infoUser["tipoUsuario"];
