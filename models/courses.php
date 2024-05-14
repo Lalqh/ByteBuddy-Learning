@@ -124,11 +124,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 // Generar el PDF
                 $userData = $crud->select('correo', 'usuarios', "id = '$idUser'");
                 $info = DB::setQueryToArray($userData);
-                
-                var_dump($info);
-                exit();
 
-                $url = $pdf->createPdf($html, $idUser, $userData[0]['correo']);
+                $url = $pdf->createPdf($html, $idUser, $info[0]['correo']);
 
                 if($url == false){
                     $response = new Response('error', 'Error a el generar el pdf');
