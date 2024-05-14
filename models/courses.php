@@ -22,7 +22,7 @@ $CorrectToken = true;
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     echo "Hola mundo";
-e   exit();
+   exit();
     if ($jwt->verifyJwt()) {
         if ($_POST["req"] === "create") {
             $crud = new Crud($db);
