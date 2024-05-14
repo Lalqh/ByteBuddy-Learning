@@ -26,6 +26,8 @@ class PdfHelper
 
     public function createPdf($html, $userId, $email)
     {
+        var_dump($email);
+        exit();
         $this->mpdf->loadHtml($html);
         $this->mpdf->render();
         $pdfContent = $this->mpdf->output();
@@ -80,7 +82,7 @@ public function getRecibos($userId)
     foreach ($response as $url => $props) {
         if (isset($props['{DAV:}getcontenttype']) && $props['{DAV:}getcontenttype'] !== 'httpd/unix-directory') {
             $nombreArchivo = basename($url);
-            $archivos[] = 'http://10.0.0.4/pdf/'.$nombreArchivo;
+            $archivos[] = 'http://10.0.0.4/pdf/'.$userId.'/'.$nombreArchivo;
         }
     }
 
