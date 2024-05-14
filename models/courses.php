@@ -11,8 +11,6 @@ require_once __DIR__ . '/Generals/plantillas.php';
 
 $db = DB::getInstance()->getConnection();
 $jwt = new JwtManager();
-echo "hasta aqui llegue xd";
-exit();
 $pdf = new PdfHelper();
 $plantilla = new plantillas();
 $CorrectToken = true;
@@ -46,6 +44,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         } else if ($_POST["req"] === "get_courses") {
             $crud = new Crud($db);
             $result = $crud->select("*", "Cursos", "_status = 'post'");
+            var_dump($result);
+            exit();
             if (!$result) {
                 $response = new Response("error", "Error al obtener los cursos");
             } else {
