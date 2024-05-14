@@ -11,6 +11,8 @@ require_once __DIR__ . '/Generals/plantillas.php';
 
 $db = DB::getInstance()->getConnection();
 $jwt = new JwtManager();
+echo "hasta aqui llegue xd";
+exit();
 $pdf = new PdfHelper();
 $plantilla = new plantillas();
 $CorrectToken = true;
