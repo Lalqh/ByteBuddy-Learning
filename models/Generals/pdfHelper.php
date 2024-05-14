@@ -29,9 +29,8 @@ class PdfHelper
         $this->mpdf->loadHtml($html);
         $this->mpdf->render();
         $pdfContent = $this->mpdf->output();
-        $data = $this->email->sendEmailWithPdf($email, "nueva compra", $pdfContent);
-        var_dump($data);
-        exit();
+        $this->email->sendEmailWithPdf($email, "nueva compra", $pdfContent);
+        
         if (!empty($pdfContent)) {
             $filename = 'recibo_compra_' . uniqid() . '.pdf';
             $webdavPath = 'pdf/' . $userId . '/' . $filename;
